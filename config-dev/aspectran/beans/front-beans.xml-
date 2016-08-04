@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//aspectran.com//DTD Aspectran 1.0//EN"
+                           "../dtd/aspectran-1.0.dtd">
+
+<translets namespace="front">
+
+	<typeAliases>
+		<typeAlias alias="TestBean" type="org.jhlabs.translets.test.TestBean"/>
+	</typeAliases>
+	
+	<bean id="parentBean">
+		<features>
+			<class>f</class>
+			<scope>singleton</scope>
+			<factoryMethod>aaa</factoryMethod>
+			<initMethod></initMethod>
+			<destroyMethod></destroyMethod>
+			<lazyInit>false</lazyInit>
+		</features>
+	</bean>
+	
+	<bean id="bean01" class="org.jhlabs.translets.test.TestBean" scope="singleton" factoryMethod="" initMethod="" destoryMethod="" lazyInit="false" parent="parentBean">
+		<features>
+			<class>f</class>
+			<scope>singleton</scope>
+			<factoryMethod>aaa</factoryMethod>
+			<initMethod></initMethod>
+			<destroyMethod></destroyMethod>
+			<lazyInit>false</lazyInit>
+		</features>
+		<constructor>
+			<arguments>
+				<item>string</item>
+				<item type="list" valueType="int">
+					<value>1</value>
+					<value>2</value>
+					<value>3</value>
+				</item>
+				<item type="map" valueType="string">
+					<value name="aa"></value>
+				</item>
+			</arguments>
+		</constructor>
+		<properties>
+			<item name="item" value="0" valueType="int"/>
+			<item name="item0" valueType="int">0</item>
+			<item name="item1">string</item>
+			<item name="list1" type="list">
+				<value>a</value>
+				<value>b</value>
+			</item>
+			<item name="map1" type="map">
+				<value name="key1">value</value>
+				<value name="key2">value</value>
+			</item>
+			<item name="ref1">
+				<reference bean="bean00"/>
+			</item>
+		</properties>
+	</bean>
+	
+	<bean id="sampleBean">
+		<features>
+			<class>com.aspectran.sample.SampleAction</class>
+			<scope>singleton</scope>
+			<initMethod>initialize</initMethod>
+			<destroyMethod>destory</destroyMethod>
+			<lazyInit>true</lazyInit>
+		</features>
+		<constructor>
+			<arguments>
+				<item>arg1</item>
+				<item type="list" valueType="int">
+					<value>1</value>
+					<value>2</value>
+					<value>3</value>
+				</item>
+			</arguments>
+		</constructor>
+		<properties>
+			<item name="name">david</item>
+			<item name="grade" type="list">
+				<value>A</value>
+				<value>B</value>
+			</item>
+			<item name="amount" type="map">
+				<value name="food" valueType="float">123456</value>
+				<value name="transportation expenses" valueType="1234">value</value>
+			</item>
+			<item name="anotherBean">
+				<reference bean="anotherBean"/>
+			</item>
+		</properties>
+	</bean>
+	
+</translets>

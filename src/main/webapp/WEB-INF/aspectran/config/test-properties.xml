@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+
+<aspectran>
+
+	<bean id="properties" class="java.util.HashMap">
+		<constructor>
+			<argument>
+				<item type="map">
+					<value name="property1">This is a Property-1</value>
+					<value name="property2">This is a Property-2</value>
+					<value name="property3">This is a Property-3</value>
+				</item>
+			</argument>
+		</constructor>
+	</bean>
+
+	<translet name="property1">
+		<transform type="transform/text">
+			<action id="property1" bean="sample.ValueAnnotationTestAction" method="property1"/>
+		</transform>
+	</translet>
+
+	<translet name="property2">
+		<transform type="transform/text">
+			<action id="property2" bean="sample.ValueAnnotationTestAction" method="property2"/>
+		</transform>
+	</translet>
+
+	<translet name="property3">
+		<transform type="transform/text">
+			<action id="property3" bean="sample.ValueAnnotationTestAction" method="property3"/>
+		</transform>
+	</translet>
+
+	<translet name="property4">
+		<transform type="transform/text">
+			<action id="property4" bean="sample.ValueAnnotationTestAction" method="property4"/>
+		</transform>
+	</translet>
+
+</aspectran>

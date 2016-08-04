@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+
+<aspectran>
+
+	<settings>
+		<setting name="transletNamePattern" value="/ga-dev-test/scheduler/*.job"/>
+	</settings>
+	
+	<bean id="schedulerFactory" class="org.quartz.impl.StdSchedulerFactory">
+		<constructor>
+			<argument>
+				<item type="properties">
+					<value name="org.quartz.scheduler.instanceName">AspectranQuartzScheduler</value>
+					<value name="org.quartz.scheduler.rmi.export">false</value>
+					<value name="org.quartz.scheduler.rmi.proxy">false</value>
+					<value name="org.quartz.scheduler.wrapJobExecutionInUserTransaction">false</value>
+					<value name="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</value>
+					<value name="org.quartz.threadPool.threadCount">10</value>
+					<value name="org.quartz.threadPool.threadPriority">5</value>
+					<value name="org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread">true</value>
+					<value name="org.quartz.jobStore.misfireThreshold">60000</value>
+					<value name="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</value>
+				</item>
+			</argument>
+		</constructor>
+	</bean>
+
+	<bean id="sampleJobAction" class="com.aspectran.example.scheduler.SampleJobAction"/>
+	
+	<aspect id="exception2" for="translet">
+		<joinpoint scope="translet">
+			<pointcut>
+				target: {
+					+: /scheduler/*.job
+				}
+			</pointcut>
+		</joinpoint>
+		<exception>
+			<responseByContentType exceptionType="java.lang.ArithmeticException">
+				<transform contentType="text/xml" type="transform/xml">
+					<echo>
+						<item name="error" type="map">
+							<value name="errorCode">E0001</value>
+							<value name="message">error occured.</value>
+						</item>
+					</echo>
+				</transform>
+			</responseByContentType>
+		</exception>
+	</aspect>
+
+<!-- 	
+	<aspect id="scheduler0">
+		<joinpoint>
+			<pointcut type="simpleTrigger">
+				startDelay: 500
+				repleatInterval: 3000
+				repeatCount: 10
+			</pointcut>
+		</joinpoint>
+		<advice bean="schedulerFactory">
+			<job translet="/scheduler1/test1.job"/>
+			<job translet="/scheduler1/test2.job"/>
+		</advice>
+	</aspect>
+-->
+	<aspect id="scheduler1" for="scheduler">
+		<joinpoint>
+			<pointcut>
+				cronTrigger: {
+					expression: 0/5 * * * * ?
+				}
+			</pointcut>
+		</joinpoint>
+		<advice bean="schedulerFactory">
+			<job translet="hello" disabled="false"/>
+			<job translet="countTo10" disabled="true"/>
+			<job translet="countTo10.xml" disabled="true"/>
+		</advice>
+	</aspect>
+	
+	<aspect id="scheduler2" for="scheduler">
+		<joinpoint>
+			<pointcut>
+				cronTrigger: {
+					expression: 0/5 * * * * ?
+				}
+			</pointcut>
+		</joinpoint>
+		<advice bean="schedulerFactory">
+			<job translet="errorCaused" disabled="true"/>
+		</advice>
+	</aspect>
+	
+	<translet name="hello">
+		<request>
+			<attribute>
+				<item name="my_name_is">aspectran</item>
+			</attribute>
+		</request>
+		<transform type="transform/text">
+			<template>
+				hello~ @{my_name_is}!!
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="countTo10">
+		<transform type="transform/text">
+			<action id="result1" bean="sampleJobAction" method="countTo10"/>
+			<template>
+@{result1}
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="countTo10twice">
+		<action id="result1" bean="sampleJobAction" method="countTo10"/>
+		<action id="result2" bean="sampleJobAction" method="countTo10"/>
+		<transform type="transform/text">
+			<template>
+(first)
+@{result1}
+(second)
+@{result2}
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="countTo10.xml">
+		<transform type="transform/xml">
+			<action id="result" bean="sampleJobAction" method="countTo10AsArray"/>
+		</transform>
+	</translet>
+
+	<translet name="countTo10ext">
+		<response>
+			<transform type="transform/text">
+				<action id="result" bean="sampleJobAction" method="countTo10"/>
+				<template>
+					@{result}
+				</template>
+			</transform>
+		</response>
+		<response name=".xml">
+			<transform type="transform/xml">
+				<action bean="sampleJobAction" method="countTo10AsArray"/>
+			</transform>
+		</response>
+	</translet>
+
+	<translet name="errorCaused">
+		<content>
+			<action id="result" bean="sampleJobAction" method="errorCaused"/>
+		</content>
+		<transform type="transform/xml"/>
+	</translet>
+
+</aspectran>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+
+<aspectran>
+
+	<environment profile="dev">
+		<property>
+			<item name="env.property1">DEV-#{properties^property1}</item>
+			<item name="env.property2">DEV-#{properties^property2}</item>
+			<item name="env.property3">DEV-#{properties^property3}</item>
+			<item name="env.property4">DEV-#{properties^property1} / #{properties^property2} / #{properties^property3}</item>
+		</property>
+	</environment>
+
+	<environment profile="prod">
+		<property>
+			<item name="env.property1">PROD-#{properties^property1}</item>
+			<item name="env.property2">PROD-#{properties^property2}</item>
+			<item name="env.property3">PROD-#{properties^property3}</item>
+			<item name="env.property4">PROD-#{properties^property1} / #{properties^property2} / #{properties^property3}</item>
+		</property>
+	</environment>
+
+	<translet name="environment-test">
+		<transform type="transform/text">
+			<template>
+				%{env.property1}
+				%{env.property2}
+				%{env.property3}
+				%{env.property4}
+			</template>
+		</transform>
+	</translet>
+
+</aspectran>

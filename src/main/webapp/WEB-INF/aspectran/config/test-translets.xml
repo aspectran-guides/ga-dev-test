@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+
+<aspectran>
+
+	<translet name="hello">
+		<echo id="echo">
+			<attribute>
+				<item name="env-property">%{env.property4}</item>
+			</attribute>
+		</echo>
+		<action id="countTo10" bean="sample.SampleAction" method="echoPrimitiveArray">
+			<argument>
+				<item type="array" valueType="int">
+					<value>1</value>
+					<value>2</value>
+					<value>3</value>
+					<value>4</value>
+					<value>5</value>
+					<value>6</value>
+					<value>7</value>
+					<value>8</value>
+					<value>9</value>
+					<value>10</value>
+				</item>
+			</argument>
+		</action>
+		<transform type="transform/text">
+			<template>
+				hello~ ${name}
+				echoPrimitiveArray: @{countTo10}
+				@{echo^env-property}
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="hello2">
+		<contents name="hello1" omittable="true">
+			<content name="hello2">
+				<action id="countTo10" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</content>
+		</contents>
+		<response>
+			<transform type="transform/xml"/>
+		</response>
+	</translet>
+
+	<translet name="hello3">
+		<contents>
+			<content name="hello3_1">
+				<action id="countTo10" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</content>
+			<content name="hello3_2">
+				<action id="countTo10" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</content>
+			<content name="hello3_3">
+				<action id="countTo10" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</content>
+		</contents>
+		<response>
+			<transform type="transform/xml"/>
+		</response>
+	</translet>
+
+	<translet name="hello4">
+		<content name="includeHello3">
+			<include translet="hello3"/>
+		</content>
+		<response>
+			<transform type="transform/xml"/>
+		</response>
+	</translet>
+
+	<translet name="sample/countTo10">
+		<transform type="transform/text">
+			<action id="result1" bean="sample.SampleAction" method="countTo10"/>
+			<template>
+				@{result1}
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="sample/countTo10twice">
+		<action id="result1" bean="sample.SampleAction" method="countTo10"/>
+		<action id="result2" bean="sample.SampleAction" method="countTo10"/>
+		<response>
+			<transform type="transform/text" contentType="text/plain">
+				<template>
+(first)
+@{result1}
+(second)
+@{result2}
+				</template>
+			</transform>
+		</response>
+		<response name=".xml">
+			<transform type="transform/xml">
+				<action id="result3" bean="sample.SampleAction" method="countTo10"/>
+				<action id="result4" bean="sample.SampleAction" method="countTo10"/>
+			</transform>
+		</response>
+	</translet>
+
+	<translet name="sample/countTo10">
+		<response name=".xml">
+			<transform type="transform/xml" pretty="true">
+				<action id="result" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</transform>
+		</response>
+		<response name=".json">
+			<transform type="transform/json" contentType="text/plain" pretty="true">
+				<action id="result" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</transform>
+		</response>
+		<response name=".apon">
+			<transform type="transform/apon" contentType="text/plain" pretty="true">
+				<action id="result" bean="sample.SampleAction" method="countTo10AsArray"/>
+			</transform>
+		</response>
+		<response name=".html">
+			<dispatch name="/WEB-INF/jsp/sample/sample.jsp" contentType="text/html"/>
+		</response>
+	</translet>
+
+	<translet name="sample/countTo10ext">
+		<response>
+			<transform type="transform/text">
+				<action id="result" bean="sample.SampleAction" method="countTo10"/>
+				<template>
+					@{result}
+				</template>
+			</transform>
+		</response>
+		<response name=".xml">
+			<transform type="transform/xml" pretty="true">
+				<action bean="sample.SampleAction" method="countTo10AsArray"/>
+			</transform>
+		</response>
+	</translet>
+
+	<translet name="sample/applyTheAdvice.xml">
+		<transform type="transform/xml" pretty="true">
+			<action id="applyTheAdvice" bean="sample.SampleAction" method="applyTheAdvice"/>
+		</transform>
+	</translet>
+
+	<translet name="echo">
+		<transform type="transform/text" contentType="text/html">
+			<echo id="echo">
+				<item name="params" type="map" valueType="string" tokenize="true">
+					<value name="param1">${param1:default1}</value>
+					<value name="param2">${param2:default2}</value>
+				</item>
+			</echo>
+			<template>
+				<![CDATA[
+				<html>
+				<style>
+				body { background-color: blue; color: white; }
+				dt { font-weight: bold; color: yellow; }
+				</style>
+				<body>
+					<dl>
+						<dt>item1</dt>
+						<dd>@{echo^params.param1}</dd>
+						<dt>item2</dt>
+						<dd>@{echo^params.param2}</dd>
+					</dl>
+				</body>
+				</html>
+				]]>
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="echoParameters">
+		<action bean="sampleBean" method="getParameters"/>
+		<echo id="echo">
+			<item name="params" valueType="parameters" tokenize="true">
+				param1: "${param1}"
+				param2: "${param2}"
+			</item>
+		</echo>
+		<transform type="transform/apon" contentType="text/plain" pretty="true">
+		</transform>
+	</translet>
+
+	<translet name="sample/sampleBean.txt">
+		<transform type="transform/text">
+			<action id="sample" bean="sampleBean" method="hello"/>
+			<template>
+				text: @{sample}
+				The length of the output string is @{sample^length:0} bytes.
+			</template>
+		</transform>
+	</translet>
+
+	<translet name="goNaver">
+		<redirect target="http://search.naver.com/search.naver">
+			<parameter>
+				<item name="where">nexearch</item>
+				<item name="query">서울</item>
+				<item name="sm">top_hty</item>
+				<item name="fbm">1</item>
+				<item name="ie">utf8</item>
+			</parameter>
+		</redirect>
+	</translet>
+
+	<translet name="test/implicit.xml">
+		<transform type="transform/xml" pretty="true">
+			<echo id="echo1">
+				<item name="param1">${param1}</item>
+				<item name="param2">${param2:blank?}</item>
+			</echo>
+			<action id="inner1" bean="sample.SampleAction" method="countTo10AsArray"/>
+			<action id="inner2" bean="sample.SampleAction" method="countTo10AsArray"/>
+		</transform>
+	</translet>
+
+	<translet name="test/explicit.xml">
+		<request>
+			<attribute>
+				<item name="param1">${param1:Hello~}</item>
+			</attribute>
+		</request>
+		<contents name="data">
+			<content name="result">
+				<echo id="echo1">
+					<item name="param1">@{param1}</item>
+					<item name="param2">${param2:blank?}</item>
+				</echo>
+				<action id="action1" bean="sample.SampleAction" method="countTo10AsArray"/>
+				<action bean="sample.SampleAction" method="countTo10AsArray"/>
+			</content>
+		</contents>
+		<response>
+			<transform type="transform/xml" pretty="true"/>
+		</response>
+	</translet>
+
+	<translet name="forward">
+		<action id="sampleBean1" bean="sampleBean" method="getParameters"/>
+		<echo id="echo1">
+			<item name="params" valueType="parameters">
+				param1: "${param1}"
+				param2: "${param2}"
+			</item>
+		</echo>
+		<forward translet="forward2"/>
+	</translet>
+
+	<translet name="forward2">
+		<action id="sampleBean2" bean="sampleBean" method="getParameters"/>
+		<echo id="echo2">
+			<item name="params" valueType="parameters">
+				param3: "${param3}"
+				param4: "${param4}"
+			</item>
+		</echo>
+		<transform type="transform/apon" contentType="text/plain" pretty="true">
+		</transform>
+	</translet>
+
+</aspectran>

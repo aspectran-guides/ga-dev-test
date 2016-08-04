@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+
+<aspectran>
+
+	<settings>
+		<setting name="transletNamePattern" value="/ga-dev-test/*"/>
+		<setting name="transletInterfaceClass" value="com.aspectran.example.common.MyTranslet"/>
+		<setting name="transletImplementationClass" value="com.aspectran.example.common.MyTransletImpl"/>
+		<setting name="nullableContentId" value="true"/>
+		<setting name="nullableActionId" value="true"/>
+	</settings>
+
+	<import file="/WEB-INF/aspectran/config/test-properties.xml" profile="dev, prod"/>
+	<import file="/WEB-INF/aspectran/config/test-environment.xml" profile="dev, prod"/>
+	<import file="/WEB-INF/aspectran/config/test-scheduler.xml" profile="dev"/>
+	<import file="/WEB-INF/aspectran/config/test-translets.xml"/>
+
+	<bean id="jspViewDispatcher" class="com.aspectran.web.activity.response.view.JspViewDispatcher">
+		<property>
+			<item name="prefix">/WEB-INF/jsp/</item>
+			<item name="suffix">.jsp</item>
+		</property>
+	</bean>
+
+	<bean id="*" scan="com.aspectran.example.**.*Action" mask="com.aspectran.example.**.*"/>
+	
+	<bean id="advice.*" scan="com.aspectran.example.**.*Advice" mask="com.aspectran.example.**.*"/>
+	
+	<bean id="sampleBean" class="com.aspectran.example.sample.SampleBean" scope="request"/>
+	
+	<bean id="multipartFormDataParser" class="com.aspectran.web.activity.request.multipart.MultipartFormDataParserFactoryBean">
+		<property>
+			<item name="maxRequestSize" value="10M"/>
+			<item name="temporaryFilePath" value="/d:/temp"/>
+			<item name="allowedFileExtensions" value=""/>
+			<item name="deniedFileExtensions" value=""/>
+		</property>
+	</bean>
+	
+	<aspect id="defaultRequestRule">
+		<joinpoint scope="request"/>
+		<settings>
+			<setting name="characterEncoding" value="utf-8"/>
+			<setting name="multipartFormDataParser" value="multipartFormDataParser"/>
+		</settings>
+	</aspect>
+	
+	<aspect id="defaultResponseRule">
+		<joinpoint scope="response"/>
+		<settings>
+			<setting name="characterEncoding" value="utf-8"/>
+			<setting name="viewDispatcher" value="jspViewDispatcher"/>
+		</settings>
+	</aspect>
+	
+	<aspect id="defaultResponseRule2">
+		<joinpoint scope="response"/>
+		<settings>
+			characterEncoding: "utf-8"
+		</settings>
+	</aspect>
+
+	<aspect id="exception1">
+		<joinpoint scope="translet">
+			<pointcut>
+				target: {
+					translet: "/example/sample/*"
+				}
+			</pointcut>
+		</joinpoint>
+		<exception>
+			<responseByContentType exceptionType="java.lang.reflect.InvocationTargetException">
+				<transform type="transform/xml" contentType="text/xml">
+					<echo>
+						errorCode: "E0001"
+						message: "error occured."
+					</echo>
+					<echo>
+						<item type="map">
+							<value name="errorCode">E0001</value>
+							<value name="message">error occured.</value>
+						</item>
+					</echo>
+				</transform>
+			</responseByContentType>
+		</exception>
+	</aspect>
+
+	<aspect id="helloAdvice">
+		<joinpoint scope="translet">
+			<pointcut>
+				target: {
+					+: "/example/sample/*@sample.SampleAction^applyTheAdvice"
+					-: "/aaaa*@*^bbb" 
+				}
+			</pointcut>
+		</joinpoint>
+		<advice bean="advice.sample.SampleAdvice">
+			<before>
+				<action method="beforeCountTo10"/>
+			</before>
+			<after>
+				<action method="afterCountTo10"/>
+			</after>
+		</advice>
+	</aspect>
+
+</aspectran>

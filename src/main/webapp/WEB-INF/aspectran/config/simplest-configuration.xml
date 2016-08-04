@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
+		"http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+
+<aspectran>
+	
+	<description>
+		가장 간단한 Aspectran Configuration입니다.
+	</description>
+
+	<!-- 기본 설정 -->
+	<settings>
+		<setting name="transletNamePattern" value="/ga-dev-test/simplest/*"/>
+	</settings>
+	
+	<environment profile="dev">
+		<property>
+			<item name="prop.property1">property1</item>
+			<item name="prop.property2">property2</item>
+			<item name="prop.property3">%{property?prop.property1}</item>
+		</property>
+	</environment>
+	
+	<bean id="simplestAction" class="com.aspectran.example.simplest.SimplestAction">
+		<description>
+			Action Method를 가지고 있는 singleton 스코프를 가지는 Bean을 정의합니다.
+		</description>
+	</bean>
+
+	<bean id="simplestAdvice" class="com.aspectran.example.simplest.SimplestAdvice">
+		<description>
+			Action Method 실행 전 후에 주입할 Advice Action Method를 가지고 있는
+			singleton 스코프를 가지는 Bean을 정의합니다.
+		</description>
+	</bean>
+
+	<aspect id="simplestAdvice">
+		<description>
+			"/example/simplest/"로 시작하고,
+			simplestAction Bean의 helloWorld 메쏘드를 실행하는 Translet이 발견되면,
+			해당 Translet의 실행 전에는 simplestAdvice Bean의 welcome 메쏘드를 실행하고,
+			해당 Translet의 실행 후에는 simplestAdvice Bean의 goodbye 메쏘드를 실행합니다.
+		</description>
+		<joinpoint scope="translet">
+			<pointcut>
+				target: {
+					+: "/example/simplest/*@simplestAction^helloWorld"
+				}
+			</pointcut>
+		</joinpoint>
+		<advice bean="simplestAdvice">
+			<before>
+				<action method="welcome"/>
+			</before>
+			<after>
+				<action method="goodbye"/>
+			</after>
+		</advice>
+	</aspect>
+
+	<translet name="helloWorld">
+		<description>
+			simplestAction 빈에서 helloWorld 메쏘드를 실행해서 "Hello, World."라는 문구를
+			텍스트 형식의 컨텐츠로 응답합니다.
+		</description>
+		<transform type="transform/text" contentType="text/plain">
+			<action bean="simplestAction" method="helloWorld"/>
+		</transform>
+	</translet>
+	
+</aspectran>

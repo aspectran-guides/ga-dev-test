@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+                           "http://aspectran.github.io/dtd/aspectran-2.dtd">
 
 <aspectran>
 
 	<environment profile="dev">
-		<property>
+		<properties>
 			<item name="env.property1">DEV-#{properties^property1}</item>
 			<item name="env.property2">DEV-#{properties^property2}</item>
 			<item name="env.property3">DEV-#{properties^property3}</item>
 			<item name="env.property4">DEV-#{properties^property1} / #{properties^property2} / #{properties^property3}</item>
-		</property>
+		</properties>
 	</environment>
 
 	<environment profile="prod">
-		<property>
+		<properties>
 			<item name="env.property1">PROD-#{properties^property1}</item>
 			<item name="env.property2">PROD-#{properties^property2}</item>
 			<item name="env.property3">PROD-#{properties^property3}</item>
 			<item name="env.property4">PROD-#{properties^property1} / #{properties^property2} / #{properties^property3}</item>
-		</property>
+		</properties>
 	</environment>
 
 	<translet name="environment-test">

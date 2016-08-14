@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-		"http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+		"http://aspectran.github.io/dtd/aspectran-2.dtd">
 
 <aspectran>
 
@@ -35,18 +35,18 @@
 		<!-- 
 		<before>
 			<action id="xml" bean="common.action.a1" method="testXmlAction">
-				<property>
+				<properties>
 					<item name="variable1">error</item>
 					<item name="variable2">0001</item>
-				</property>
+				</properties>
 			</action>
 		</before>
 		<after>
 			<action id="xml" bean="common.action.a1" method="testXmlAction">
-				<property>
+				<properties>
 					<item name="variable1">error</item>
 					<item name="variable2">0001</item>
-				</property>
+				</properties>
 			</action>
 		</after>
 		-->
@@ -59,18 +59,18 @@
 		<advice>
 			<before>
 				<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-					<property>
+					<properties>
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
-					</property>
+					</properties>
 				</action>
 			</before>
 			<after>
 				<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-					<property>
+					<properties>
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
-					</property>
+					</properties>
 				</action>
 			</after>
 		</advice>
@@ -91,10 +91,10 @@
 		<joinpoint/>
 		<exception>
 			<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-				<property>
+				<properties>
 					<item name="variable1">error</item>
 					<item name="variable2">0001</item>
-				</property>
+				</properties>
 			</action>
 			<responseByContentType exceptionType="com.aspectran.test.web.LoginFailedException">
 				<dispatch contentType="text/html" name="/WEB-INF/jsp/login.jsp"/>
@@ -113,10 +113,10 @@
 				</transform>
 				<transform contentType="text/xml">
 					<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-						<property>
+						<properties>
 							<item name="variable1">error</item>
 							<item name="variable2">0001</item>
-						</property>
+						</properties>
 					</action>
 					<echo id="error3">
 						<item name="code">0002</item>
@@ -150,10 +150,10 @@
 		<advice>
 			<around>
 				<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-					<property>
+					<properties>
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
-					</property>
+					</properties>
 				</action>
 			</around>
 		</advice>
@@ -170,18 +170,18 @@
 		<advice>
 			<before>
 				<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-					<property>
+					<properties>
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
-					</property>
+					</properties>
 				</action>
 			</before>
 			<after>
 				<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">
-					<property>
+					<properties>
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
-					</property>
+					</properties>
 				</action>
 			</after>
 		</advice>
@@ -195,7 +195,7 @@
    <list>
     <ref bean="SystemOutTestTrigger"/>
    </list>
-  </property>
+  </properties>
   <property name="quartzproperty">
    <props>
     <prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
@@ -204,12 +204,12 @@
     <prop key="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</prop>
     <prop key="org.quartz.jobStore.misfireThreshold">600000</prop>
    </props>
-  </property>
+  </properties>
  </bean>
 	-->
 	<bean class="org.quartz.impl.StdSchedulerFactory" scope="singleton">
 		<constructor>
-			<argument>
+			<arguments>
 				<item type="properties">
 					<value name="org.quartz.scheduler.instanceName">DefaultQuartzScheduler</value>
 					<value name="org.quartz.scheduler.rmi.export">false</value>
@@ -222,13 +222,13 @@
 					<value name="org.quartz.jobStore.misfireThreshold">60000</value>
 					<value name="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</value>
 				</item>
-			</argument>
+			</arguments>
 		</constructor>
 	</bean>
 	
 	<aspect id="scheduler1" for="scheduler">
 		<joinpoint>
-			<pointcut type="simpleTrigger">
+			<pointcut type="simple-trigger">
 				startDelay: 500
 				repleatInterval: 3000
 				repeatCount: 10
@@ -241,7 +241,7 @@
 	</aspect>
 	<aspect id="scheduler2" for="scheduler">
 		<joinpoint>
-			<pointcut type="cronTrigger">* * 10 0</pointcut>
+			<pointcut type="cron-trigger">* * 10 0</pointcut>
 		</joinpoint>
 		<advice bean="schedulerFactory1">
 			<job translet="/scheduler1/test3.job"/>
@@ -251,42 +251,42 @@
 
 	<!-- dataSource 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroyMethod="close">
-		<property>
+		<properties>
 			<item name="driverClassName" value="${driver}"/>
 			<item name="url" value="${dburl}"/>
 			<item name="username" value="${username}"/>
 			<item name="password" value="${password}"/>
 			<item name="defaultAutoCommit" value="false"/>
 			<item name="poolPreparedStatements" value="true"/>
-		</property>
+		</properties>
 	</bean>
 
 	<!-- dataSource 설정 -->
 	<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource" destroyMethod="close">
-		<property>
+		<properties>
 			<item name="driverClassName" value="${driver}"/>
 			<item name="url" value="${dburl}"/>
 			<item name="username" value="${username}"/>
 			<item name="password" value="${password}"/>
 			<item name="defaultAutoCommit" value="false"/>
 			<item name="poolPreparedStatements" value="true"/>
-		</property>
+		</properties>
 	</bean>
 
 
 	<bean id="sqlMapClient" class="com.aspectran.support.orm.ibatis.SqlMapClientFactoryBean">
-		<property>
+		<properties>
 			<item name="configLocation" value="/WEB-INF/sqlmap/sql-map-config.xml"/>
 			<item name="mappingLocations" value="/WEB-INF/sqlmap/mappings/**/*.xml"/>
 			<item name="dataSource">#{dataSource2}</item>
-		</property>
+		</properties>
 	</bean>
 	
 	<bean id="sqlMapClientTransactionAdvice" class="com.aspectran.support.orm.ibatis.SqlMapClientTransactionAdvice">
 		<constructor>
-			<argument>
+			<arguments>
 				<item>#{sqlMapClient}</item>
-			</argument>
+			</arguments>
 		</constructor>
 	</bean>
 	
@@ -321,18 +321,18 @@
 	</aspect>
 
 	<bean id="sqlSessionFactoryBean" class="com.aspectran.support.orm.mybatis.SqlSessionFactoryBean">
-		<property>
+		<properties>
 			<item name="configLocation" value="/WEB-INF/sqlmap/sql-map-config.xml"/>
 			<item name="mappingLocations" value="/WEB-INF/sqlmap/mappings/**/*.xml"/>
 			<item name="dataSource">#{dataSource2}</item>
-		</property>
+		</properties>
 	</bean>
 	
 	<bean id="sqlSessionTransactionAdvice" class="com.aspectran.support.orm.mybatis.SqlSessionTransactionAdvice">
 		<constructor>
-			<argument>
+			<arguments>
 				<item>#{sqlSessionFactoryBean}</item>
-			</argument>
+			</arguments>
 		</constructor>
 	</bean>
 	
@@ -346,9 +346,9 @@
 		<advice bean="sqlSessionTransactionAdvice">
 			<before>
 				<action method="open">
-					<argument>
+					<arguments>
 						<item valueType="boolean">false</item>
-					</argument>
+					</arguments>
 				</action>
 			</before>
 			<after>
@@ -366,7 +366,7 @@
 	<import resource="aspectran/translets/sample.xml"/>
 	
 	<bean id="sample">
-		<property>
+		<properties>
 			item: [
 				{
 					name: "where"
@@ -389,7 +389,7 @@
 					value: "utf8"
 				}
 			]		
-		</property>
+		</properties>
 	</bean>
 
 	<template id="sampleTemplate">

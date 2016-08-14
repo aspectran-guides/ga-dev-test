@@ -24,7 +24,6 @@ import java.util.Properties;
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.context.bean.ablility.FactoryBean;
 import com.aspectran.core.context.bean.ablility.InitializableTransletBean;
-import com.aspectran.core.util.Assert;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
@@ -77,7 +76,9 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
 	 */
 	public void initialize(Translet translet) throws Exception {
 		if(this.sqlMapClient == null) {
-			Assert.notNull(configLocation, "Property 'configLocation' is required");
+			if(configLocation == null) {
+				throw new IllegalArgumentException("Property 'configLocation' is required.");
+			}
 
 			File file = translet.getApplicationAdapter().toRealPathAsFile(configLocation);
 			InputStream is = new FileInputStream(file);

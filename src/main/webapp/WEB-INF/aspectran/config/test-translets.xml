@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+                           "http://aspectran.github.io/dtd/aspectran-2.dtd">
 
 <aspectran>
 
 	<translet name="hello">
 		<echo id="echo">
-			<attribute>
+			<attributes>
 				<item name="env-property">%{env.property4}</item>
-			</attribute>
+			</attributes>
 		</echo>
 		<action id="countTo10" bean="sample.SampleAction" method="echoPrimitiveArray">
-			<argument>
+			<arguments>
 				<item type="array" valueType="int">
 					<value>1</value>
 					<value>2</value>
@@ -24,7 +24,7 @@
 					<value>9</value>
 					<value>10</value>
 				</item>
-			</argument>
+			</arguments>
 		</action>
 		<transform type="transform/text">
 			<template>
@@ -198,13 +198,13 @@
 
 	<translet name="goNaver">
 		<redirect target="http://search.naver.com/search.naver">
-			<parameter>
+			<parameters>
 				<item name="where">nexearch</item>
 				<item name="query">서울</item>
 				<item name="sm">top_hty</item>
 				<item name="fbm">1</item>
 				<item name="ie">utf8</item>
-			</parameter>
+			</parameters>
 		</redirect>
 	</translet>
 
@@ -221,9 +221,9 @@
 
 	<translet name="test/explicit.xml">
 		<request>
-			<attribute>
+			<attributes>
 				<item name="param1">${param1:Hello~}</item>
-			</attribute>
+			</attributes>
 		</request>
 		<contents name="data">
 			<content name="result">

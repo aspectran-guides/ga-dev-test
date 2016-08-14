@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-		"http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+		"http://aspectran.github.io/dtd/aspectran-2.dtd">
 
 <aspectran>
 	
@@ -14,11 +14,11 @@
 	</settings>
 	
 	<environment profile="dev">
-		<property>
+		<properties>
 			<item name="prop.property1">property1</item>
 			<item name="prop.property2">property2</item>
 			<item name="prop.property3">%{property?prop.property1}</item>
-		</property>
+		</properties>
 	</environment>
 	
 	<bean id="simplestAction" class="com.aspectran.example.simplest.SimplestAction">

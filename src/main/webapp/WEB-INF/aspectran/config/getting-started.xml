@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+                           "http://aspectran.github.io/dtd/aspectran-2.dtd">
 
 <aspectran>
 	
@@ -44,22 +44,22 @@
 		<description>
 			multipart/form-data request를 처리하기 위해서 반드시 지정해야 합니다.
 		</description>
-		<property>
+		<properties>
 			<item name="maxRequestSize" value="10M"/>
 			<item name="temporaryFilePath" value="/d:/temp"/>
 			<item name="allowedFileExtensions" value=""/>
 			<item name="deniedFileExtensions" value=""/>
-		</property>
+		</properties>
 	</bean>
 
 	<bean id="jspViewDispatcher" class="com.aspectran.web.activity.response.view.JspViewDispatcher">
 		<description>
 			Aspectran의 Translet이 처리한 결과값을 화면에 표현하기 위해 JSP를 이용합니다.
 		</description>
-		<property>
+		<properties>
 			<item name="templateNamePrefix">/WEB-INF/jsp/</item>
 			<item name="templateNameSuffix">.jsp</item>
-		</property>
+		</properties>
 	</bean>
 	
 	<aspect id="defaultRequestRule">
@@ -197,17 +197,17 @@
 			checkCountRangeAdvice Aspect가 작동됩니다.
 		</description>
 		<request>
-			<attribute>
+			<attributes>
 				<item name="from"/>
 				<item name="to"/>
-			</attribute>
+			</attributes>
 		</request>
 		<content>
 			<action id="count1" bean="helloworld.HelloWorldAction" method="counting">
-				<argument>
+				<arguments>
 					<item valueType="int">@{from}</item>
 					<item valueType="int">@{to}</item>
-				</argument>
+				</arguments>
 			</action>
 		</content>
 		<response>

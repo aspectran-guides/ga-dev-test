@@ -719,10 +719,10 @@ aspectran: {
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
 					</property>
-					<argument>
+					<arguments>
 						<item name="variable1">error</item>
 						<item name="variable2">0001</item>
-					</argument>
+					</arguments>
 				</action>
 			</before>
 			<after>
@@ -844,7 +844,7 @@ aspectran: {
 				}
 			</pointcut>
 		
-			<pointcut type="simpleTrigger">
+			<pointcut type="simple-trigger">
 				startDelay: 500
 				repleatInterval: 3000
 				repeatCount: 10
@@ -857,7 +857,7 @@ aspectran: {
 	</aspect>
 	<aspect id="scheduler2" for="scheduler">
 		<joinpoint>
-			<pointcut type="cronTrigger">* * 10 0</pointcut>
+			<pointcut type="cron-trigger">* * 10 0</pointcut>
 		</joinpoint>
 		<advice bean="schedulerFactory1">
 			<job translet="/scheduler1/test3.job"/>

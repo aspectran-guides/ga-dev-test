@@ -42,7 +42,6 @@ import org.apache.ibatis.type.TypeHandler;
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.context.bean.ablility.FactoryBean;
 import com.aspectran.core.context.bean.ablility.InitializableTransletBean;
-import com.aspectran.core.util.Assert;
 import com.aspectran.core.util.StringUtils;
 import com.aspectran.core.util.logging.Log;
 import com.aspectran.core.util.logging.LogFactory;
@@ -453,8 +452,12 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 */
 	public void initialize(Translet translet) throws Exception {
 		if(this.sqlSessionFactory == null) {
-			Assert.notNull(dataSource, "Property 'dataSource' is required");
-			Assert.notNull(sqlSessionFactoryBuilder, "Property 'sqlSessionFactoryBuilder' is required");
+			if(dataSource == null) {
+				throw new IllegalArgumentException("Property 'dataSource' is required.");
+			}
+			if(sqlSessionFactoryBuilder == null) {
+				throw new IllegalArgumentException("Property 'sqlSessionFactoryBuilder' is required.");
+			}
 
 			InputStream configLocationStream = null;
 			InputStream[] mapperLocationStreams = null;

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-2.0.dtd">
+                           "http://aspectran.github.io/dtd/aspectran-2.dtd">
 
 <aspectran>
 
 	<bean id="properties" class="java.util.HashMap">
 		<constructor>
-			<argument>
+			<arguments>
 				<item type="map">
 					<value name="property1">This is a Property-1</value>
 					<value name="property2">This is a Property-2</value>
 					<value name="property3">This is a Property-3</value>
 				</item>
-			</argument>
+			</arguments>
 		</constructor>
 	</bean>
 

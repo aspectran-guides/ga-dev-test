@@ -49,7 +49,7 @@
 <meta property="og:site_name" content="Aspectran" />
 <link type="text/plain" rel="author" href="http://www.aspectran.com/humans.txt" />
 </head>
-<body id="top-of-page" class="article">
+<body id="top-of-page">
 	<nav id="navigation" class="no-js">
 		<div class="title-bar" data-responsive-toggle="dropdownmenu" data-hide-for="medium">
 			<div class="title-bar-left">
@@ -77,10 +77,15 @@
 			</div>
 		</div>
 	</nav>
-	<div id="masthead"
-		class="masthead-no-image-header masthead-with-article-header">
+
+	<div id="forkme-ribbon">
+		<a href="https://github.com/aspectran/aspectran" target="_blank">
+			<img src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" width="149" height="149" alt="Fork me on GitHub"></a>
+	</div>
+
+	<div id="masthead" class="masthead-no-image-header">
 		<div class="row">
-			<div class="small-12 columns">
+			<div class="columns">
 				<header>
 					<span itemprop="name">
 						<p class="subheadline">Development Testing</p>
@@ -96,10 +101,6 @@
 						</ul>
 					</nav>
 				</div>
-			</div>
-			<div id="forkme-ribbon" style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;">
-				<a href="https://github.com/aspectran/aspectran" target="_blank">
-					<img src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-white@2x.png" width="149" height="149" alt="Fork me on GitHub"></a>
 			</div>
 		</div>
 	</div>

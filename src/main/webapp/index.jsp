@@ -49,7 +49,7 @@
 <meta property="og:site_name" content="Aspectran" />
 <link type="text/plain" rel="author" href="http://www.aspectran.com/humans.txt" />
 </head>
-<body id="top-of-page">
+<body id="top-of-page" class="plate solid">
 	<nav id="navigation" class="no-js">
 		<div class="title-bar" data-responsive-toggle="dropdownmenu" data-hide-for="medium">
 			<div class="title-bar-left">
@@ -91,20 +91,26 @@
 						<p class="subheadline">Development Testing</p>
 						<h1>개발 테스트</h1>
 					</span>
+					<p class="teaser" itemprop="description">개발 과정에서 기능의 검증을 위해 실시하는 테스트 URL을 모아 둔 페이지입니다.</p>
 				</header>
-				<p class="teaser" itemprop="description">개발 과정에서 기능의 검증을 위해 실시하는 테스트 URL을 모아 둔 페이지입니다.</p>
-				<div class="breadcrumbs-bar">
-					<nav role="navigation" aria-label="You are here:">
-						<ul class="breadcrumbs">
-							<li><a href="/getting-started/">Aspectran Guides</a></li>
-							<li><span class="show-for-sr">Current: </span> <span class="current">RESTful Web Service</span></li>
-						</ul>
-					</nav>
-				</div>
+			</div>
+		</div>
+		<div class="row breadcrumbs-bar">
+			<div class="columns">
+				<nav role="navigation" aria-label="You are here:">
+					<ul class="breadcrumbs">
+						<li><a href="/getting-started/">Aspectran Guides</a></li>
+						<li><span class="show-for-sr">Current: </span> <span class="current">RESTful Web Service</span></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>
-	<!-- --------------------------------------------------------------------------- -->
+	<div class="row">
+		<div class="columns">
+			<div class="row content">
+				<div class="xlarge-10 xlarge-offset-1 columns">
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 	<div class="row">
 		<div class="columns t30">
@@ -153,7 +159,12 @@
 		});
 	</script>
 
-	<!-- --------------------------------------------------------------------------- -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div id="up-to-top" class="row">
 		<div class="small-12 columns" style="text-align: right;">
 			<a class="iconfont" href="#top-of-page">&#xf108;</a>

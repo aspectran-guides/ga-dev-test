@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 2.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-2.dtd">
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 3.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-3.dtd">
 
 <aspectran>
 
@@ -17,7 +17,7 @@
 	<import file="/WEB-INF/aspectran/config/test-scheduler.xml" profile="dev"/>
 	<import file="/WEB-INF/aspectran/config/test-translets.xml"/>
 
-	<bean id="jspViewDispatcher" class="com.aspectran.web.activity.response.view.JspViewDispatcher">
+	<bean id="jspViewDispatcher" class="com.aspectran.web.support.view.JspViewDispatcher">
 		<properties>
 			<item name="prefix">/WEB-INF/jsp/</item>
 			<item name="suffix">.jsp</item>
@@ -30,45 +30,31 @@
 	
 	<bean id="sampleBean" class="com.aspectran.example.sample.SampleBean" scope="request"/>
 	
-	<bean id="multipartFormDataParser" class="com.aspectran.web.activity.request.multipart.MultipartFormDataParserFactoryBean">
+	<bean id="multipartFormDataParser" class="com.aspectran.web.support.multipart.commons.CommonsMultipartFormDataParserFactoryBean">
 		<properties>
 			<item name="maxRequestSize" value="10M"/>
-			<item name="temporaryFilePath" value="/d:/temp"/>
+			<item name="tempDirectoryPath" value=""/>
 			<item name="allowedFileExtensions" value=""/>
 			<item name="deniedFileExtensions" value=""/>
 		</properties>
 	</bean>
 	
 	<aspect id="defaultRequestRule">
-		<joinpoint scope="request"/>
+		<joinpoint type="translet"/>
 		<settings>
 			<setting name="characterEncoding" value="utf-8"/>
 			<setting name="multipartFormDataParser" value="multipartFormDataParser"/>
-		</settings>
-	</aspect>
-	
-	<aspect id="defaultResponseRule">
-		<joinpoint scope="response"/>
-		<settings>
-			<setting name="characterEncoding" value="utf-8"/>
 			<setting name="viewDispatcher" value="jspViewDispatcher"/>
-		</settings>
-	</aspect>
-	
-	<aspect id="defaultResponseRule2">
-		<joinpoint scope="response"/>
-		<settings>
-			characterEncoding: "utf-8"
 		</settings>
 	</aspect>
 
 	<aspect id="exception1">
-		<joinpoint scope="translet">
-			<pointcut>
-				target: {
+		<joinpoint type="translet">
+			pointcut: {
+				include: {
 					translet: "/example/sample/*"
 				}
-			</pointcut>
+			}
 		</joinpoint>
 		<exception>
 			<responseByContentType exceptionType="java.lang.reflect.InvocationTargetException">
@@ -89,13 +75,11 @@
 	</aspect>
 
 	<aspect id="helloAdvice">
-		<joinpoint scope="translet">
-			<pointcut>
-				target: {
-					+: "/example/sample/*@sample.SampleAction^applyTheAdvice"
-					-: "/aaaa*@*^bbb" 
-				}
-			</pointcut>
+		<joinpoint type="translet">
+			pointcut: {
+				+: "/example/sample/*@sample.SampleAction^applyTheAdvice"
+				-: "/aaaa*@*^bbb"
+			}
 		</joinpoint>
 		<advice bean="advice.sample.SampleAdvice">
 			<before>

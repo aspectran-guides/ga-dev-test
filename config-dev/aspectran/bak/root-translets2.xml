@@ -17,7 +17,7 @@
 		<properties>
 			<item name="characterEncoding">utf-8</item>
 			<item name="maxRequestSize">10M</item>
-			<item name="temporaryFilePath">/d:/</item>
+			<item name="tempDirectoryPath">/d:/</item>
 		</properties>
 		<before>
 			<action id="xml" bean="common.action.a1" method="testXmlAction" hidden="true">

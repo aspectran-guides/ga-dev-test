@@ -38,9 +38,9 @@ checkpoint (request | response) "request"
 
 <!ELEMENT characterEncoding (#PCDATA)>
 
-<!ELEMENT multipart (maxRequestSize, temporaryFilePath)>
+<!ELEMENT multipart (maxRequestSize, tempDirectoryPath)>
 <!ELEMENT maxRequestSize (#PCDATA)>
-<!ELEMENT temporaryFilePath (#PCDATA)>
+<!ELEMENT tempDirectoryPath (#PCDATA)>
 
 <!ELEMENT responseRule (characterEncoding | enforceResponseById? | defaultContentType? | ticket* | dispatcherViews?)*>
 <!ELEMENT enforceResponseById (#PCDATA)>

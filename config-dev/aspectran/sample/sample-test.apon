@@ -69,7 +69,7 @@ aspectran: {
 		setting: {
 			characterEncoding: "utf-8"
 			multipart.maxRequestSize: "10M"
-			multipart.temporaryFilePath: "/d:/"
+			multipart.tempDirectoryPath: "/d:/"
 			multipart.allowedFileExtensions: "gif;jpg;png"
 			multipart.deniedFileExtensions: "php;jsp;sh;bat"
 		}

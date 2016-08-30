@@ -27,7 +27,7 @@
 		<settings>
 			<setting name="characterEncoding" value="utf-8"/>
 			<setting name="multipart.maxRequestSize" value="10M"/>
-			<setting name="multipart.temporaryFilePath" value="/d:/"/>
+			<setting name="multipart.tempDirectoryPath" value="/d:/"/>
 		</settings>
 	</aspect>
 	

@@ -64,7 +64,7 @@ aspectran: {
 		setting: {
 			characterEncoding: utf-8
 			multipart.maxRequestSize: 10M
-			multipart.temporaryFilePath: /d:/
+			multipart.tempDirectoryPath: /d:/
 			multipart.allowedFileExtensions: gif;jpg;png
 			multipart.deniedFileExtensions: php;jsp;sh;bat
 		}
@@ -482,7 +482,7 @@ aspectran: {
 		<settings>
 			<setting name="characterEncoding" value="utf-8"/>
 			<setting name="multipart.maxRequestSize" value="10M"/>
-			<setting name="multipart.temporaryFilePath" value="/d:/"/>
+			<setting name="multipart.tempDirectoryPath" value="/d:/"/>
 			<setting name="multipart.allowedFileExtensions" value="gif;jpg;png"/>
 			<setting name="multipart.deniedFileExtensions" value="php;jsp;sh;bat"/>
 		</settings>
@@ -515,7 +515,7 @@ aspectran: {
 		settings: {
 			characterEncoding: utf-8
 			multipart.maxRequestSize: 10M
-			multipart.temporaryFilePath: /d:/
+			multipart.tempDirectoryPath: /d:/
 		}
 	</apon>
 	

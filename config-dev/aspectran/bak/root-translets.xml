@@ -51,7 +51,7 @@
 		<characterEncoding>utf-8</characterEncoding>
 		<multipart>
 			<maxRequestSize>10M</maxRequestSize>
-			<temporaryFilePath>/d:/</temporaryFilePath>
+			<tempDirectoryPath>/d:/</tempDirectoryPath>
 		</multipart>
 	</requestRule>
 

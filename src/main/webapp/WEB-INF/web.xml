@@ -30,7 +30,7 @@
 		scheduler: {
 			startDelaySeconds: 10
 			waitOnShutdown: true
-			startup: false
+			startup: true
 		}
         web: {
             uriDecoding: "utf-8"

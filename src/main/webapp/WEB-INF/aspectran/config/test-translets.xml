@@ -10,6 +10,7 @@
 				<item name="env-property">%{env.property4}</item>
 			</attributes>
 		</echo>
+		<action id="hello" bean="simplest.SimplestAction" method="helloWorld"/>
 		<action id="countTo10" bean="sample.SampleAction" method="echoPrimitiveArray">
 			<arguments>
 				<item type="array" valueType="int">

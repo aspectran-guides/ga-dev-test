@@ -10,7 +10,7 @@
 	
 	<bean id="schedulerFactory" class="org.quartz.impl.StdSchedulerFactory" scope="singleton">
 		<constructor>
-			<arguments>
+			<argument>
 				<item type="properties">
 					<value name="org.quartz.scheduler.instanceName">AspectranQuartzScheduler</value>
 					<value name="org.quartz.scheduler.rmi.export">false</value>
@@ -23,7 +23,7 @@
 					<value name="org.quartz.jobStore.misfireThreshold">60000</value>
 					<value name="org.quartz.jobStore.class">org.quartz.simpl.RAMJobStore</value>
 				</item>
-			</arguments>
+			</argument>
 		</constructor>
 	</bean>
 	
@@ -64,7 +64,8 @@
 -->
 	<aspect id="scheduler1" for="scheduler">
 		<joinpoint>
-			<pointcut type="cron-trigger">0/5 * * * * ?</pointcut>
+			<pointcut type="cronTrigger">0/5 * * * * ?</pointcut>
+			pointcut
 		</joinpoint>
 		<advice bean="schedulerFactory">
 			<job translet="hello" disabled="false"/>
@@ -73,9 +74,26 @@
 		</advice>
 	</aspect>
 	
+	<schedule id="schedule-1">
+		<trigger type="cron">
+			startDelaySeconds: 500
+			expression: "0/5 * * * * ?"
+		</trigger>
+		<trigger type="simple">
+			startDelaySeconds: 10
+			intervalInSeconds: 10
+			repeatCount: 10
+		</trigger>
+		<scheduler bean="schedulerFactory">
+			<job translet="hello" disabled="false"/>
+			<job translet="countTo10" disabled="true"/>
+			<job translet="countTo10.xml" disabled="true"/>
+		</scheduler>
+	</schedule>
+	
 	<aspect id="scheduler2" for="scheduler">
 		<joinpoint>
-			<pointcut type="cron-trigger">0/5 * * * * ?</pointcut>
+			<pointcut type="cronTrigger">0/5 * * * * ?</pointcut>
 		</joinpoint>
 		<advice bean="schedulerFactory">
 			<job translet="errorCaused" disabled="true"/>
@@ -84,9 +102,9 @@
 	
 	<translet name="hello">
 		<request>
-			<attributes>
+			<attribute>
 				<item name="my_name_is">aspectran</item>
-			</attributes>
+			</attribute>
 		</request>
 		<transform type="transform/text">
 			<template>

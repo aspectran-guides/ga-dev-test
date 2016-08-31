@@ -8,8 +8,6 @@
 		<setting name="transletNamePattern" value="/ga-dev-test/*"/>
 		<setting name="transletInterfaceClass" value="com.aspectran.example.common.MyTranslet"/>
 		<setting name="transletImplementationClass" value="com.aspectran.example.common.MyTransletImpl"/>
-		<setting name="nullableContentId" value="true"/>
-		<setting name="nullableActionId" value="true"/>
 	</settings>
 
 	<import file="/WEB-INF/aspectran/config/test-properties.xml" profile="dev, prod"/>
@@ -39,7 +37,7 @@
 		</properties>
 	</bean>
 	
-	<aspect id="defaultRequestRule">
+	<aspect id="transletSettings">
 		<joinpoint type="translet"/>
 		<settings>
 			<setting name="characterEncoding" value="utf-8"/>
@@ -74,7 +72,7 @@
 		</exception>
 	</aspect>
 
-	<aspect id="helloAdvice">
+	<aspect id="sampleAspect">
 		<joinpoint type="translet">
 			pointcut: {
 				+: "/example/sample/*@sample.SampleAction^applyTheAdvice"
@@ -87,6 +85,28 @@
 			</before>
 			<after>
 				<action method="afterCountTo10"/>
+			</after>
+		</advice>
+	</aspect>
+
+	<aspect id="helloAspect">
+		<description>
+			모든 Translet이 실행될 때마다 환영인사와 작별인사를 합니다.
+		</description>
+		<joinpoint type="bean">
+			pointcut: {
+				+: "/ga-dev-test/**@**.*Action"
+				+: "/ga-dev-test/**@**.*Advice"
+				+: "/ga-dev-test/**@**.*Bean"
+				-: "/ga-dev-test/**@advice.simplest.SimplestAdvice"
+			}
+		</joinpoint>
+		<advice bean="advice.simplest.SimplestAdvice">
+			<before>
+				<action method="welcome"/>
+			</before>
+			<after>
+				<action method="goodbye"/>
 			</after>
 		</advice>
 	</aspect>

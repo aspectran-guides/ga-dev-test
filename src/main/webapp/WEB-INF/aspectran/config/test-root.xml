@@ -12,7 +12,7 @@
 
 	<import file="/WEB-INF/aspectran/config/test-properties.xml" profile="dev, prod"/>
 	<import file="/WEB-INF/aspectran/config/test-environment.xml" profile="dev, prod"/>
-	<import file="/WEB-INF/aspectran/config/test-scheduler.xml" profile="dev"/>
+	<import file="/WEB-INF/aspectran/config/test-scheduler.xml" profile="dev, prod"/>
 	<import file="/WEB-INF/aspectran/config/test-translets.xml"/>
 
 	<bean id="jspViewDispatcher" class="com.aspectran.web.support.view.JspViewDispatcher">

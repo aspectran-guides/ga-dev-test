@@ -260,8 +260,7 @@
 				param4: "${param4}"
 			</item>
 		</echo>
-		<transform type="transform/apon" contentType="text/plain" pretty="true">
-		</transform>
+		<transform type="transform/apon" contentType="text/plain" pretty="true"/>
 	</translet>
 
 </aspectran>

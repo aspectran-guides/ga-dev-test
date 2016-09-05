@@ -14,7 +14,6 @@
 
 	<translet name="front/welcome" extends="./front">
 		<request method="get" characterEncoding="utf-8">
-			<allowedMethods>GET, POST, PATCH, PUT, DELETE</allowedMethods>
 			<attribute>
 				<item name="param-1"/>
 				<item name="param0" value="Value"/>
@@ -96,9 +95,6 @@
 						<item name="item2">@{item2:aaa}</item>
 					</property>
 				</action>
-				<headers>
-					<item></item>
-				</headers>
 			</content>
 			<content hidden="false">
 				<!--
@@ -128,12 +124,6 @@
 		</response>
 		<response name="download">
 			<transform type="transform/xsl" contentType="text/html">
-				<echo id="echo2">
-					<item type="map">
-						<value name="item41">${item0}</value>
-						<value name="item42">${item1}</value>
-					</item>
-				</echo>
 				<action id="file" bean="responseHeaderSpecifier" method="setHeader">
 					<argument>
 						<item type="map">
@@ -143,31 +133,9 @@
 					</argument>
 				</action>
 				<template file="WEB-INF/xsl/service/test.xsl" noCache="true"/>
-				<dispatch name="abcde" dispatcher="filedownload"/>
-				<headers>
-					
-				</headers>
 			</transform>
 		</response>
-		<response name="download2">
-			<headers>
-				<item></item>
-			</headers>
-			<dispatch name="abcde" dispatcher="filedownload"/>
-		</response>
-		<response name="download3">
-			<dispatch name="abcde" dispatcher="filedownload">
-				<headers>
-					<item></item>
-				</headers>
-			</dispatch>
-		</response>
 		<response name="xsl">
-			<headers>
-				<item/>
-				<item/>
-				<item/>
-			</headers>
 			<transform type="transform/xsl" contentType="text/html">
 				<template file="WEB-INF/xsl/service/test.xsl"/>
 			</transform>
@@ -337,9 +305,6 @@
 	</translet>
 	
 	<translet name="home2">
-		<headers>
-			
-		</header>
 		<transform type="transform/text" contentType="text/plain">
 			<template file="/c:\ADE_JHLabs\workspace\aspectran-web\webapp\WEB-INF\web.xml" encoding="utf-8"/>
 		</transform>

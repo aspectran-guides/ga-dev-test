@@ -10,7 +10,7 @@
 
 	<bean id="defaultScheduler1" class="com.aspectran.scheduler.support.QuartzSchedulerFactoryBean">
 		<properties>
-			<item type="properties" name="props">
+			<item type="properties" name="quartzProperties">
 				<value name="org.quartz.scheduler.instanceName">AspectranQuartzScheduler</value>
 				<value name="org.quartz.scheduler.rmi.export">false</value>
 				<value name="org.quartz.scheduler.rmi.proxy">false</value>

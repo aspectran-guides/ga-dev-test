@@ -1,9 +1,9 @@
 package com.aspectran.example.common;
 
-import com.aspectran.core.activity.Activity;
-import com.aspectran.core.activity.CoreTranslet;
-
 import javax.servlet.http.HttpServletRequest;
+
+import com.aspectran.core.activity.CoreActivity;
+import com.aspectran.core.activity.CoreTranslet;
 
 /**
  * <code>Translet</code>을 확장한다.
@@ -13,10 +13,10 @@ public class MyTransletImpl extends CoreTranslet implements MyTranslet {
 	/**
 	 * Instantiates a new my translet implementation.
 	 *
-	 * @param activity the activity
+	 * @param coreActivity the core activity
 	 */
-	public MyTransletImpl(Activity activity) {
-		super(activity);
+	public MyTransletImpl(CoreActivity coreActivity) {
+		super(coreActivity);
 	}
 	
 	/**

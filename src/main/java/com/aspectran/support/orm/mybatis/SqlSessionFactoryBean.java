@@ -61,7 +61,6 @@ import com.aspectran.core.util.logging.LogFactory;
  * 
  * @see #setConfigLocation
  * @see #setDataSource
- * @version $Id$
  */
 public class SqlSessionFactoryBean implements InitializableTransletBean, FactoryBean<SqlSessionFactory> {
 	
@@ -117,8 +116,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * 
 	 * @param objectWrapperFactory
 	 */
-	public void setObjectWrapperFactory(
-			ObjectWrapperFactory objectWrapperFactory) {
+	public void setObjectWrapperFactory(ObjectWrapperFactory objectWrapperFactory) {
 		this.objectWrapperFactory = objectWrapperFactory;
 	}
 
@@ -143,9 +141,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	/**
 	 * Mybatis plugin list.
 	 *
-	 * @param plugins
-	 *            list of plugins
-	 *
+	 * @param plugins list of plugins
 	 */
 	public void setPlugins(Interceptor[] plugins) {
 		this.plugins = plugins;
@@ -154,9 +150,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	/**
 	 * Packages to search for type aliases.
 	 *
-	 * @param typeAliasesPackage
-	 *            package to scan for domain objects
-	 *
+	 * @param typeAliasesPackage package to scan for domain objects
 	 */
 	public void setTypeAliasesPackage(String typeAliasesPackage) {
 		this.typeAliasesPackage = typeAliasesPackage;
@@ -166,9 +160,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * Super class which domain objects have to extend to have a type alias
 	 * created. No effect if there is no package to scan configured.
 	 *
-	 * @param typeAliasesSuperType
-	 *            super class for domain objects
-	 *
+	 * @param typeAliasesSuperType super class for domain objects
 	 */
 	public void setTypeAliasesSuperType(Class<?> typeAliasesSuperType) {
 		this.typeAliasesSuperType = typeAliasesSuperType;
@@ -177,9 +169,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	/**
 	 * Packages to search for type handlers.
 	 *
-	 * @param typeHandlersPackage
-	 *            package to scan for type handlers
-	 *
+	 * @param typeHandlersPackage package to scan for type handlers
 	 */
 	public void setTypeHandlersPackage(String typeHandlersPackage) {
 		this.typeHandlersPackage = typeHandlersPackage;
@@ -189,8 +179,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * Set type handlers. They must be annotated with {@code MappedTypes} and
 	 * optionally with {@code MappedJdbcTypes}
 	 *
-	 * @param typeHandlers
-	 *            Type handler list
+	 * @param typeHandlers Type handler list
 	 */
 	public void setTypeHandlers(TypeHandler<?>[] typeHandlers) {
 		this.typeHandlers = typeHandlers;
@@ -200,8 +189,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * List of type aliases to register. They can be annotated with
 	 * {@code Alias}
 	 *
-	 * @param typeAliases
-	 *            Type aliases list
+	 * @param typeAliases Type aliases list
 	 */
 	public void setTypeAliases(Class<?>[] typeAliases) {
 		this.typeAliases = typeAliases;
@@ -256,7 +244,6 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * manager needs to work on the underlying target {@code DataSource}. If
 	 * there's nevertheless a {@code TransactionAwareDataSourceProxy} passed in,
 	 * it will be unwrapped to extract its target {@code DataSource}.
-	 *
 	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -269,7 +256,6 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * This is mainly meant for testing so that mock SqlSessionFactory classes
 	 * can be injected. By default, {@code SqlSessionFactoryBuilder} creates
 	 * {@code DefaultSqlSessionFactory} instances.
-	 *
 	 */
 	public void setSqlSessionFactoryBuilder(SqlSessionFactoryBuilder sqlSessionFactoryBuilder) {
 		this.sqlSessionFactoryBuilder = sqlSessionFactoryBuilder;
@@ -289,9 +275,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * SqlSession through Spring's MyBatis framework will throw an exception if
 	 * a transaction is active.
 	 *
-	 * @see SpringManagedTransactionFactory
-	 * @param transactionFactory
-	 *            the MyBatis TransactionFactory
+	 * @param transactionFactory the MyBatis TransactionFactory
 	 */
 	public void setTransactionFactory(TransactionFactory transactionFactory) {
 		this.transactionFactory = transactionFactory;
@@ -303,8 +287,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 	 * name. The default value is
 	 * {@code SqlSessionFactoryBean.class.getSimpleName()}.
 	 *
-	 * @param environment
-	 *            the environment name
+	 * @param environment the environment name
 	 */
 	public void setEnvironment(String environment) {
 		this.environment = environment;
@@ -329,7 +312,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 			configuration = xmlConfigBuilder.getConfiguration();
 		} else {
 			if(log.isDebugEnabled()) {
-				log.debug("Property 'configLocation' not specified, using default MyBatis Configuration");
+				log.debug("Property 'configLocation' not specified, using default MyBatis Configuration.");
 			}
 			configuration = new Configuration();
 			configuration.setVariables(this.configurationProperties);
@@ -440,16 +423,14 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 			}
 		} else {
 			if(log.isDebugEnabled()) {
-				log.debug("Property 'mapperLocations' was not specified or no matching resources found");
+				log.debug("Property 'mapperLocations' was not specified or no matching resources found.");
 			}
 		}
 
 		return this.sqlSessionFactoryBuilder.build(configuration);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public void initialize(Translet translet) throws Exception {
 		if(this.sqlSessionFactory == null) {
 			if(dataSource == null) {
@@ -482,9 +463,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public SqlSessionFactory getObject() {
 		return this.sqlSessionFactory;
 	}

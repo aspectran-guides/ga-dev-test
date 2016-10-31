@@ -28,8 +28,20 @@ public abstract class MyBatisDaoSupport {
 	}
 	
 	public SqlSession getSqlSession(Translet translet) {
-		SqlSession sqlSession = translet.getBeforeAdviceResult(revelentAspectId);
+		SqlSessionTransactionAdvice advice = translet.getAspectAdviceBean(revelentAspectId);
+		if(advice == null) {
+			throw new IllegalArgumentException("");
+		}
+
+		SqlSession sqlSession = advice.getSqlSession();
+		if(sqlSession == null) {
+			throw new IllegalArgumentException("");
+		}
+
 		return sqlSession;
+
+		//SqlSession sqlSession = translet.getAspectAdviceBean(revelentAspectId).getBeforeAdviceResult(revelentAspectId);
+		//return sqlSession;
 	}
 
 }

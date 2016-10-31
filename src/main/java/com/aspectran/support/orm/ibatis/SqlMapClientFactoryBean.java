@@ -71,9 +71,7 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
 			this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is));
 	}
 
-	/* (non-Javadoc)
-	 * @see com.aspectran.core.context.bean.ablility.InitializableTransletBean#initialize(com.aspectran.core.activity.Translet)
-	 */
+	@Override
 	public void initialize(Translet translet) throws Exception {
 		if(this.sqlMapClient == null) {
 			if(configLocation == null) {
@@ -87,6 +85,7 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
 		}
 	}
 
+	@Override
 	public SqlMapClient getObject() {
 		return this.sqlMapClient;
 	}

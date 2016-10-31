@@ -40,7 +40,6 @@ public class SqlMapClientTransactionAdvice {
 
 	public SqlMapClient start() throws SQLException {
 		sqlMapClient.startTransaction();
-		
 		return sqlMapClient;
 	}
 	

@@ -15,8 +15,6 @@
  */
 package com.aspectran.support.orm.mybatis;
 
-import java.sql.SQLException;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -33,7 +31,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
  * </blockquote>
  *
  * @author Juho Jeong
- * @since 2015. 04. 03
+ * @since 2015. 04. 03.
 */
 public class SqlSessionTransactionAdvice {
 	
@@ -67,51 +65,53 @@ public class SqlSessionTransactionAdvice {
 		this.forceRollback = forceRollback;
 	}
 
-	public SqlSession open() throws SQLException {
+	public SqlSession open() {
 		if(sqlSession == null) {
 			sqlSession = sqlSessionFactory.openSession();
 		}
 		return sqlSession;
 	}
-	
-	public SqlSession open(boolean autoCommit) throws SQLException {
+
+	public SqlSession open(boolean autoCommit) {
 		this.autoCommit = autoCommit;
 		return open();
 	}
-	
-	public void commit() throws SQLException {
-		if(!autoCommit)
+
+	public void commit() {
+		if(!autoCommit) {
 			sqlSession.commit(forceCommit);
+		}
 	}
-	
-	public void commit(boolean force) throws SQLException {
-		if(!autoCommit)
+
+	public void commit(boolean force) {
+		if(!autoCommit) {
 			sqlSession.commit(force);
+		}
 	}
-	
+
 	/**
 	 * Rollback.
-	 * 
+	 *
 	 * <blockquote cite="https://mybatis.github.io/mybatis-3/java-api.html">
 	 * Most of the time you won't have to call rollback(),
 	 * as MyBatis will do that for you if you don't call commit.
 	 * However, if you need more fine grained control over a session where multiple commits
 	 * and rollbacks are possible, you have the rollback option there to make that possible.
 	 * </blockquote>
-	 *
-	 * @throws SQLException the SQL exception
 	 */
-	public void rollback() throws SQLException {
-		if(!autoCommit)
+	public void rollback() {
+		if(!autoCommit) {
 			sqlSession.rollback(forceRollback);
+		}
 	}
-	
-	public void rollback(boolean force) throws SQLException {
-		if(!autoCommit)
+
+	public void rollback(boolean force) {
+		if(!autoCommit) {
 			sqlSession.rollback(force);
+		}
 	}
-	
-	public void close() throws SQLException {
+
+	public void close() {
 		if(sqlSession != null) {
 			sqlSession.close();
 			sqlSession = null;

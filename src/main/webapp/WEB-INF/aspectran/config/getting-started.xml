@@ -22,8 +22,8 @@
 		</description>
 		<filter>
 			exclude: [
-				"com.aspectran.example.common.**.*"
-				"com.aspectran.example.sample.**.*"
+				com.aspectran.example.common.**.*
+				com.aspectran.example.sample.**.*
 			]
 		</filter>
 	</bean>
@@ -64,7 +64,7 @@
 	
 	<aspect id="defaultSettings">
 		<description>
-			Translet에서 필요로 하는 기본 환경변수를 주입합니다
+			모든 Translet에서 필요로 하는 기본 환경변수를 주입합니다
 			multipart/form-data request를 처리하기 위해 multipartFormDataParser를 지정하고,
 			Translet이 생산한 결과값을 화면에 표현하기 위해 JSP를 이용합니다.
 		</description>
@@ -83,7 +83,7 @@
 		<joinpoint type="translet">
 			pointcut: {
 				include: {
-					translet: "/example/*"
+					translet: /example/*
 				}
 			}
 		</joinpoint>
@@ -92,7 +92,8 @@
 				에러요인과 응답 컨텐츠의 형식에 따라 처리방식을 다르게 정할 수 있습니다.
 				exceptionType을 지정하지 않으면 모든 exception에 반응합니다.
 			</description>
-			<catch exception="java.lang.reflect.InvocationTargetException">
+			<thrown type="java.lang.reflect.InvocationTargetException">
+				<action/>
 				<transform type="transform/xml" contentType="text/xml">
 					<echo id="result">
 						<item type="map">
@@ -109,7 +110,7 @@
 						</item>
 					</echo>
 				</transform>
-			</catch>
+			</thrown>
 		</exception>
 	</aspect>
 
@@ -121,7 +122,7 @@
 		</description>
 		<joinpoint type="translet">
 			pointcut: {
-				+: "/example/**/*@helloworld.HelloWorldAction^echo|helloWorld|counting"
+				+: /example/**/*@helloworld.HelloWorldAction^echo|helloWorld|counting
 			}
 		</joinpoint>
 		<advice bean="advice.helloworld.HelloWorldAdvice">
@@ -131,7 +132,18 @@
 			<after>
 				<action method="goodbye"/>
 			</after>
+			<finally>
+				<thrown type="java.lang.reflect.InvocationTargetException,,,">
+					<action method="rollback"/>
+				</thrown>
+				<action method=""/>
+			</finally>
 		</advice>
+		<exception>
+			<thrown>
+				<action bean="advice.helloworld.HelloWorldAdvice" method="goodbye"/>
+			</thrown>
+		</exception>
 	</aspect>
 
 	<aspect id="checkCountRangeAdvice">
@@ -143,7 +155,7 @@
 		</description>
 		<joinpoint type="translet">
 			pointcut: {
-				+: "/example/counting"
+				+: /example/counting
 			}
 		</joinpoint>
 		<advice bean="advice.helloworld.HelloWorldAdvice">
@@ -202,7 +214,7 @@
 
 	<translet name="*" scan="/WEB-INF/jsp/**/*.jsp">
 		<description>
-			'/WEB-INF/jsp/' 디렉토리 하위 경로에서 모든 JSP 파일을 찾아서 Translet 등록을 자동으로 합니다.
+			'/WEB-INF/jsp/' 디렉토리 하위 경로부터 모든 JSP 파일을 찾아서 Translet 등록을 합니다.
 			viewDispatcher는 defaultResponseRule Aspect에서 지정한 jspViewDispatcher를 사용합니다.
 			검색된 jsp 파일의 경로는 template 요소의 file 속성 값으로 지정됩니다. 
 		</description>

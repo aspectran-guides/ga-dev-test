@@ -179,8 +179,8 @@
 		<action bean="sampleBean" method="getParameters"/>
 		<echo id="echo">
 			<item name="params" valueType="parameters" tokenize="true">
-				param1: "${param1}"
-				param2: "${param2}"
+				param1: ${param1}
+				param2: ${param2}
 			</item>
 		</echo>
 		<transform type="transform/apon" contentType="text/plain" pretty="true">
@@ -245,8 +245,8 @@
 		<action id="sampleBean1" bean="sampleBean" method="getParameters"/>
 		<echo id="echo1">
 			<item name="params" valueType="parameters">
-				param1: "${param1}"
-				param2: "${param2}"
+				param1: ${param1}
+				param2: ${param2}
 			</item>
 		</echo>
 		<forward translet="forward2"/>
@@ -256,8 +256,8 @@
 		<action id="sampleBean2" bean="sampleBean" method="getParameters"/>
 		<echo id="echo2">
 			<item name="params" valueType="parameters">
-				param3: "${param3}"
-				param4: "${param4}"
+				param3: ${param3}
+				param4: ${param4}
 			</item>
 		</echo>
 		<transform type="transform/apon" contentType="text/plain" pretty="true"/>

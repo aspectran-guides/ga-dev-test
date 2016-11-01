@@ -34,7 +34,7 @@
 			}
 		</joinpoint>
 		<exception>
-			<catch exception="java.lang.ArithmeticException">
+			<thrown type="java.lang.ArithmeticException">
 				<transform contentType="text/xml" type="transform/xml">
 					<echo>
 						<item name="error" type="map">
@@ -43,7 +43,7 @@
 						</item>
 					</echo>
 				</transform>
-			</catch>
+			</thrown>
 		</exception>
 	</aspect>
 

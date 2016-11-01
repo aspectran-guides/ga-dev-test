@@ -93,7 +93,6 @@
 				exceptionType을 지정하지 않으면 모든 exception에 반응합니다.
 			</description>
 			<thrown type="java.lang.reflect.InvocationTargetException">
-				<action/>
 				<transform type="transform/xml" contentType="text/xml">
 					<echo id="result">
 						<item type="map">
@@ -133,7 +132,7 @@
 				<action method="goodbye"/>
 			</after>
 			<finally>
-				<thrown type="java.lang.reflect.InvocationTargetException,,,">
+				<thrown type="java.lang.reflect.InvocationTargetException">
 					<action method="rollback"/>
 				</thrown>
 				<action method=""/>

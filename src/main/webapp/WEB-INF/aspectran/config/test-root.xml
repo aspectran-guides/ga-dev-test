@@ -50,16 +50,16 @@
 		<joinpoint type="translet">
 			pointcut: {
 				include: {
-					translet: "/example/sample/*"
+					translet: /example/sample/*
 				}
 			}
 		</joinpoint>
 		<exception>
-			<catch exception="java.lang.reflect.InvocationTargetException">
+			<thrown type="java.lang.reflect.InvocationTargetException">
 				<transform type="transform/xml" contentType="text/xml">
 					<echo>
-						errorCode: "E0001"
-						message: "error occured."
+						errorCode: E0001
+						message: error occured.
 					</echo>
 					<echo>
 						<item type="map">
@@ -68,15 +68,15 @@
 						</item>
 					</echo>
 				</transform>
-			</catch>
+			</thrown>
 		</exception>
 	</aspect>
 
 	<aspect id="sampleAspect">
 		<joinpoint type="translet">
 			pointcut: {
-				+: "/example/sample/*@sample.SampleAction^applyTheAdvice"
-				-: "/aaaa*@*^bbb"
+				+: /example/sample/*@sample.SampleAction^applyTheAdvice
+				-: /aaaa*@*^bbb
 			}
 		</joinpoint>
 		<advice bean="advice.sample.SampleAdvice">
@@ -97,10 +97,10 @@
 		</description>
 		<joinpoint type="bean">
 			pointcut: {
-				+: "/ga-dev-test/**@**.*Action"
-				+: "/ga-dev-test/**@**.*Advice"
-				+: "/ga-dev-test/**@**.*Bean"
-				-: "/ga-dev-test/**@advice.simplest.SimplestAdvice"
+				+: /ga-dev-test/**@**.*Action
+				+: /ga-dev-test/**@**.*Advice
+				+: /ga-dev-test/**@**.*Bean
+				-: /ga-dev-test/**@advice.simplest.SimplestAdvice
 			}
 		</joinpoint>
 		<advice bean="advice.simplest.SimplestAdvice">

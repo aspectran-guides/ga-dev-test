@@ -29,7 +29,9 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 public class SqlMapClientTransactionAdvice {
 	
 	private final SqlMapClient sqlMapClient;
-	
+
+	private boolean started;
+
 	public SqlMapClientTransactionAdvice(SqlMapClient sqlMapClient) {
 		this.sqlMapClient = sqlMapClient;
 	}
@@ -38,8 +40,13 @@ public class SqlMapClientTransactionAdvice {
 		return sqlMapClient;
 	}
 
+	public boolean isStarted() {
+		return started;
+	}
+
 	public SqlMapClient start() throws SQLException {
 		sqlMapClient.startTransaction();
+		started = true;
 		return sqlMapClient;
 	}
 	

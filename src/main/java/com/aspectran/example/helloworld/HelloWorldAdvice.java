@@ -28,6 +28,22 @@ public class HelloWorldAdvice {
 		return msg;
 	}
 	
+	public String errorOccured() {
+		String msg = "Error occured!";
+
+		log.info(msg);
+
+		return msg;
+	}
+
+	public String terminator() {
+		String msg = "I'll be back.";
+
+		log.info(msg);
+
+		return msg;
+	}
+
 	public void checkCountRange(Translet translet) {
 		String from = translet.getAttribute("from");
 		String to = translet.getAttribute("to");

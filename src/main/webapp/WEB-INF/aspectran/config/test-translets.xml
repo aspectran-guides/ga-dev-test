@@ -88,10 +88,10 @@
 		<response>
 			<transform type="transform/text" contentType="text/plain">
 				<template>
-(first)
-@{result1}
-(second)
-@{result2}
+					(first)
+					@{result1}
+					(second)
+					@{result2}
 				</template>
 			</transform>
 		</response>

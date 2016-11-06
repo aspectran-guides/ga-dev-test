@@ -20,15 +20,23 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public abstract class IBatisDaoSupport {
 
-	private String revelentAspectId;
+	private String relevantAspectId;
 
-	public void setRevelentAspectId(String revelentAspectId) {
-		this.revelentAspectId = revelentAspectId;
+	public void setRelevantAspectId(String relevantAspectId) {
+		this.relevantAspectId = relevantAspectId;
 	}
 	
 	public SqlMapClient getSqlMapClient(Translet translet) {
-		SqlMapClient sqlMapClient = translet.getBeforeAdviceResult(revelentAspectId);
-		return sqlMapClient;
+		SqlMapClientTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
+		if (advice == null) {
+			throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
+		}
+
+		if(!advice.isStarted()) {
+			throw new IllegalArgumentException("sqlMap.startTransaction() has not been called.");
+		}
+
+		return advice.getSqlMapClient();
 	}
 
 }

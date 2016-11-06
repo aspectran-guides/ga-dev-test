@@ -21,27 +21,24 @@ import com.aspectran.core.activity.Translet;
 
 public abstract class MyBatisDaoSupport {
 
-	private String revelentAspectId;
+	private String relevantAspectId;
 
-	public void setRevelentAspectId(String revelentAspectId) {
-		this.revelentAspectId = revelentAspectId;
+	public void setRelevantAspectId(String relevantAspectId) {
+		this.relevantAspectId = relevantAspectId;
 	}
 	
 	public SqlSession getSqlSession(Translet translet) {
-		SqlSessionTransactionAdvice advice = translet.getAspectAdviceBean(revelentAspectId);
-		if(advice == null) {
-			throw new IllegalArgumentException("");
+		SqlSessionTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
+		if (advice == null) {
+			throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
 		}
 
 		SqlSession sqlSession = advice.getSqlSession();
-		if(sqlSession == null) {
-			throw new IllegalArgumentException("");
+		if (sqlSession == null) {
+			throw new IllegalArgumentException("SqlSession is not opened.");
 		}
 
 		return sqlSession;
-
-		//SqlSession sqlSession = translet.getAspectAdviceBean(revelentAspectId).getBeforeAdviceResult(revelentAspectId);
-		//return sqlSession;
 	}
 
 }

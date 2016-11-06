@@ -100,7 +100,7 @@
 		<transform type="transform/text">
 			<action id="result1" bean="sampleJobAction" method="countTo10"/>
 			<template>
-@{result1}
+				@{result1}
 			</template>
 		</transform>
 	</translet>
@@ -110,10 +110,10 @@
 		<action id="result2" bean="sampleJobAction" method="countTo10"/>
 		<transform type="transform/text">
 			<template>
-(first)
-@{result1}
-(second)
-@{result2}
+				(first)
+				@{result1}
+				(second)
+				@{result2}
 			</template>
 		</transform>
 	</translet>

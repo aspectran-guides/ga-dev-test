@@ -37,20 +37,16 @@ public class SqlSessionTransactionAdvice {
 	
 	private final SqlSessionFactory sqlSessionFactory;
 	
-	private SqlSession sqlSession;
-	
 	private boolean autoCommit;
-	
+
 	private boolean forceCommit;
-	
+
 	private boolean forceRollback;
-	
+
+	private SqlSession sqlSession;
+
 	public SqlSessionTransactionAdvice(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
-	}
-	
-	public SqlSession getSqlSession() {
-		return sqlSession;
 	}
 
 	public void setAutoCommit(boolean autoCommit) {
@@ -65,9 +61,13 @@ public class SqlSessionTransactionAdvice {
 		this.forceRollback = forceRollback;
 	}
 
+	public SqlSession getSqlSession() {
+		return sqlSession;
+	}
+
 	public SqlSession open() {
 		if(sqlSession == null) {
-			sqlSession = sqlSessionFactory.openSession();
+			sqlSession = sqlSessionFactory.openSession(autoCommit);
 		}
 		return sqlSession;
 	}
@@ -78,15 +78,11 @@ public class SqlSessionTransactionAdvice {
 	}
 
 	public void commit() {
-		if(!autoCommit) {
-			sqlSession.commit(forceCommit);
-		}
+		sqlSession.commit(forceCommit);
 	}
 
 	public void commit(boolean force) {
-		if(!autoCommit) {
-			sqlSession.commit(force);
-		}
+		sqlSession.commit(force);
 	}
 
 	/**
@@ -100,15 +96,11 @@ public class SqlSessionTransactionAdvice {
 	 * </blockquote>
 	 */
 	public void rollback() {
-		if(!autoCommit) {
-			sqlSession.rollback(forceRollback);
-		}
+		sqlSession.rollback(forceRollback);
 	}
 
 	public void rollback(boolean force) {
-		if(!autoCommit) {
-			sqlSession.rollback(force);
-		}
+		sqlSession.rollback(force);
 	}
 
 	public void close() {

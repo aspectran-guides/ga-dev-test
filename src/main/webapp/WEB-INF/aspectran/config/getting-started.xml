@@ -132,15 +132,15 @@
 				<action method="goodbye"/>
 			</after>
 			<finally>
-				<thrown type="java.lang.reflect.InvocationTargetException">
-					<action method="rollback"/>
+				<thrown>
+					<action method="errorOccured"/>
 				</thrown>
-				<action method=""/>
+				<action method="terminator"/>
 			</finally>
 		</advice>
 		<exception>
 			<thrown>
-				<action bean="advice.helloworld.HelloWorldAdvice" method="goodbye"/>
+				<action bean="advice.helloworld.HelloWorldAdvice" method="errorOccured"/>
 			</thrown>
 		</exception>
 	</aspect>

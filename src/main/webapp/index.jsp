@@ -181,8 +181,7 @@
 				<div class="medium-4 large-4 columns">
 					<h5>About Aspectran</h5>
 					<p>
-						Aspectran은 엔터프라이즈급 자바 웹 응용 프로그램을 구축하기 위한 가볍고 확장 가능한 프레임워크입니다.
-						Apache 2.0 License에 의거하여 무료로 사용할 수 있습니다. <a href="http://www.aspectran.com/info/">자세히 보기</a>
+						<a href="http://www.aspectran.com/info/">Aspectran is a lightweight Java framework for building Enterprise-ready Web applications. Also, It will be able to launch as a Console-based and Embedded application.</a>
 					</p>
 				</div>
 				<div class="small-6 medium-3 large-3 large-offset-1 columns">

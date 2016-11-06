@@ -65,16 +65,17 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
 	}
 
 	public void buildSqlMapClient(InputStream is) throws Exception {
-		if(sqlMapClientProperties != null)
+		if (sqlMapClientProperties != null) {
 			this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is), sqlMapClientProperties);
-		else
+		} else {
 			this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is));
+		}
 	}
 
 	@Override
 	public void initialize(Translet translet) throws Exception {
-		if(this.sqlMapClient == null) {
-			if(configLocation == null) {
+		if (this.sqlMapClient == null) {
+			if (configLocation == null) {
 				throw new IllegalArgumentException("Property 'configLocation' is required.");
 			}
 

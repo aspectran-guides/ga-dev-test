@@ -45,17 +45,24 @@ public class SqlMapClientTransactionAdvice {
 	}
 
 	public SqlMapClient start() throws SQLException {
-		sqlMapClient.startTransaction();
-		started = true;
+		if(!started) {
+			sqlMapClient.startTransaction();
+			started = true;
+		}
 		return sqlMapClient;
 	}
 	
 	public void commit() throws SQLException {
-		sqlMapClient.commitTransaction();
+		if(started) {
+			sqlMapClient.commitTransaction();
+		}
 	}
 	
 	public void end() throws SQLException {
-		sqlMapClient.endTransaction();
+		if(started) {
+			sqlMapClient.endTransaction();
+			started = false;
+		}
 	}
 	
 }

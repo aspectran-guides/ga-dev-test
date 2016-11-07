@@ -25,8 +25,12 @@ public abstract class IBatisDaoSupport {
 	public void setRelevantAspectId(String relevantAspectId) {
 		this.relevantAspectId = relevantAspectId;
 	}
-	
+
 	public SqlMapClient getSqlMapClient(Translet translet) {
+		return getSqlMapClient(translet, relevantAspectId);
+	}
+
+	public SqlMapClient getSqlMapClient(Translet translet, String relevantAspectId) {
 		SqlMapClientTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
 		if (advice == null) {
 			throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");

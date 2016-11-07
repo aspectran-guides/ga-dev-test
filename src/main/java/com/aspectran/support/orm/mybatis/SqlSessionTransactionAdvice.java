@@ -78,11 +78,15 @@ public class SqlSessionTransactionAdvice {
 	}
 
 	public void commit() {
-		sqlSession.commit(forceCommit);
+		if(sqlSession != null) {
+			sqlSession.commit(forceCommit);
+		}
 	}
 
 	public void commit(boolean force) {
-		sqlSession.commit(force);
+		if(sqlSession != null) {
+			sqlSession.commit(force);
+		}
 	}
 
 	/**
@@ -96,11 +100,15 @@ public class SqlSessionTransactionAdvice {
 	 * </blockquote>
 	 */
 	public void rollback() {
-		sqlSession.rollback(forceRollback);
+		if(sqlSession != null) {
+			sqlSession.rollback(forceRollback);
+		}
 	}
 
 	public void rollback(boolean force) {
-		sqlSession.rollback(force);
+		if(sqlSession != null) {
+			sqlSession.rollback(force);
+		}
 	}
 
 	public void close() {

@@ -68,7 +68,7 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<url>http://backend.aspectran.com/manager/text</url>
+					<url>http://backend2.aspectran.com/manager/text</url>
 					<server>backend-tomcat-server</server>
 					<path>/ga-dev-test</path>
 				</configuration>

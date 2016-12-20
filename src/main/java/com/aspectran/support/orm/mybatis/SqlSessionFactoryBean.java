@@ -405,9 +405,10 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 
 		if(mapperLocationStreams != null && mapperLocationStreams.length > 0) {
 			for(int i = 0; i < mapperLocationStreams.length; i++) {
-				if(mapperLocationStreams[i] == null)
+				if(mapperLocationStreams[i] == null) {
 					continue;
-
+				}
+				
 				try {
 					XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(mapperLocationStreams[i], configuration, mapperLocations[i], configuration.getSqlFragments());
 					xmlMapperBuilder.parse();

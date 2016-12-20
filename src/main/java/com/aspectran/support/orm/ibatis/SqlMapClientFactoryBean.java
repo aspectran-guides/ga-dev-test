@@ -42,9 +42,6 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
 
 	private SqlMapClient sqlMapClient;
 
-	public SqlMapClientFactoryBean() {
-	}
-
 	/**
 	 * Set the location of the iBATIS SqlMapClient config file.
 	 * A typical value is "/WEB-INF/sql-map-config.xml".
@@ -64,12 +61,8 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
 		this.sqlMapClientProperties = sqlMapClientProperties;
 	}
 
-	public void buildSqlMapClient(InputStream is) throws Exception {
-		if (sqlMapClientProperties != null) {
-			this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is), sqlMapClientProperties);
-		} else {
-			this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is));
-		}
+	private void buildSqlMapClient(InputStream is) {
+		this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is), sqlMapClientProperties);
 	}
 
 	@Override

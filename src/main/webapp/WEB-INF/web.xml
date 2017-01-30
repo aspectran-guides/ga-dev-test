@@ -11,27 +11,27 @@
   <context-param>
     <param-name>aspectran:config</param-name>
     <param-value>
-		context: {
-			root: /WEB-INF/aspectran/config/test-root.xml
-			encoding: utf-8
-			resources: [
-				/WEB-INF/aspectran/config
-			]
-			hybridLoad: true
-			autoReload: {
-				reloadMethod: hard
-				observationInterval: 5
-				startup: false
-			}
-			profiles: {
-				active: dev
-			}
-		}
-		scheduler: {
-			startDelaySeconds: 10
-			waitOnShutdown: true
-			startup: true
-		}
+        context: {
+            root: /WEB-INF/aspectran/config/test-root.xml
+            encoding: utf-8
+            resources: [
+                /WEB-INF/aspectran/config
+            ]
+            hybridLoad: true
+            autoReload: {
+                reloadMode: hard
+                scanIntervalSeconds: 5
+                startup: false
+            }
+            profiles: {
+                active: dev
+            }
+        }
+        scheduler: {
+            startDelaySeconds: 13
+            waitOnShutdown: true
+            startup: true
+        }
         web: {
             uriDecoding: utf-8
         }

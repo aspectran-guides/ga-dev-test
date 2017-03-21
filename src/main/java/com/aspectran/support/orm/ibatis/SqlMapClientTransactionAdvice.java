@@ -27,42 +27,42 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 * @author Juho Jeong
 */
 public class SqlMapClientTransactionAdvice {
-	
-	private final SqlMapClient sqlMapClient;
 
-	private boolean started;
+    private final SqlMapClient sqlMapClient;
 
-	public SqlMapClientTransactionAdvice(SqlMapClient sqlMapClient) {
-		this.sqlMapClient = sqlMapClient;
-	}
-	
-	public SqlMapClient getSqlMapClient() {
-		return sqlMapClient;
-	}
+    private boolean started;
 
-	public boolean isStarted() {
-		return started;
-	}
+    public SqlMapClientTransactionAdvice(SqlMapClient sqlMapClient) {
+        this.sqlMapClient = sqlMapClient;
+    }
 
-	public SqlMapClient start() throws SQLException {
-		if(!started) {
-			sqlMapClient.startTransaction();
-			started = true;
-		}
-		return sqlMapClient;
-	}
-	
-	public void commit() throws SQLException {
-		if(started) {
-			sqlMapClient.commitTransaction();
-		}
-	}
-	
-	public void end() throws SQLException {
-		if(started) {
-			sqlMapClient.endTransaction();
-			started = false;
-		}
-	}
-	
+    public SqlMapClient getSqlMapClient() {
+        return sqlMapClient;
+    }
+
+    public boolean isStarted() {
+        return started;
+    }
+
+    public SqlMapClient start() throws SQLException {
+        if(!started) {
+            sqlMapClient.startTransaction();
+            started = true;
+        }
+        return sqlMapClient;
+    }
+
+    public void commit() throws SQLException {
+        if(started) {
+            sqlMapClient.commitTransaction();
+        }
+    }
+
+    public void end() throws SQLException {
+        if(started) {
+            sqlMapClient.endTransaction();
+            started = false;
+        }
+    }
+
 }

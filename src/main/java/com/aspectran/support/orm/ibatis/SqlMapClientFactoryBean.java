@@ -35,53 +35,53 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 * <p>Created: 2015. 04. 03</p>
 */
 public class SqlMapClientFactoryBean implements InitializableTransletBean, FactoryBean<SqlMapClient> {
-	
-	private String configLocation;
 
-	private Properties sqlMapClientProperties;
+    private String configLocation;
 
-	private SqlMapClient sqlMapClient;
+    private Properties sqlMapClientProperties;
 
-	/**
-	 * Set the location of the iBATIS SqlMapClient config file.
-	 * A typical value is "/WEB-INF/sql-map-config.xml".
-	 */
-	public void setConfigLocation(String configLocation) {
-		this.configLocation = configLocation;
-	}
+    private SqlMapClient sqlMapClient;
 
-	/**
-	 * Set optional properties to be passed into the SqlMapClientBuilder, as
-	 * alternative to a <code>&lt;properties&gt;</code> tag in the sql-map-config.xml
-	 * file. Will be used to resolve placeholders in the config file.
-	 * @see #setConfigLocation
-	 * @see com.ibatis.sqlmap.client.SqlMapClientBuilder#buildSqlMapClient(java.io.Reader, java.util.Properties)
-	 */
-	public void setSqlMapClientProperties(Properties sqlMapClientProperties) {
-		this.sqlMapClientProperties = sqlMapClientProperties;
-	}
+    /**
+     * Set the location of the iBATIS SqlMapClient config file.
+     * A typical value is "/WEB-INF/sql-map-config.xml".
+     */
+    public void setConfigLocation(String configLocation) {
+        this.configLocation = configLocation;
+    }
 
-	private void buildSqlMapClient(InputStream is) {
-		this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is), sqlMapClientProperties);
-	}
+    /**
+     * Set optional properties to be passed into the SqlMapClientBuilder, as
+     * alternative to a <code>&lt;properties&gt;</code> tag in the sql-map-config.xml
+     * file. Will be used to resolve placeholders in the config file.
+     * @see #setConfigLocation
+     * @see com.ibatis.sqlmap.client.SqlMapClientBuilder#buildSqlMapClient(java.io.Reader, java.util.Properties)
+     */
+    public void setSqlMapClientProperties(Properties sqlMapClientProperties) {
+        this.sqlMapClientProperties = sqlMapClientProperties;
+    }
 
-	@Override
-	public void initialize(Translet translet) throws Exception {
-		if (this.sqlMapClient == null) {
-			if (configLocation == null) {
-				throw new IllegalArgumentException("Property 'configLocation' is required.");
-			}
+    private void buildSqlMapClient(InputStream is) {
+        this.sqlMapClient = SqlMapClientBuilder.buildSqlMapClient(new InputStreamReader(is), sqlMapClientProperties);
+    }
 
-			File file = translet.getApplicationAdapter().toRealPathAsFile(configLocation);
-			InputStream is = new FileInputStream(file);
+    @Override
+    public void initialize(Translet translet) throws Exception {
+        if (this.sqlMapClient == null) {
+            if (configLocation == null) {
+                throw new IllegalArgumentException("Property 'configLocation' is required.");
+            }
 
-			buildSqlMapClient(is);
-		}
-	}
+            File file = translet.getApplicationAdapter().toRealPathAsFile(configLocation);
+            InputStream is = new FileInputStream(file);
 
-	@Override
-	public SqlMapClient getObject() {
-		return this.sqlMapClient;
-	}
-	
+            buildSqlMapClient(is);
+        }
+    }
+
+    @Override
+    public SqlMapClient getObject() {
+        return this.sqlMapClient;
+    }
+
 }

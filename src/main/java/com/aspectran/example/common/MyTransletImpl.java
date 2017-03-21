@@ -10,31 +10,31 @@ import com.aspectran.core.activity.CoreTranslet;
  */
 public class MyTransletImpl extends CoreTranslet implements MyTranslet {
 
-	/**
-	 * Instantiates a new my translet implementation.
-	 *
-	 * @param coreActivity the core activity
-	 */
-	public MyTransletImpl(CoreActivity coreActivity) {
-		super(coreActivity);
-	}
-	
-	/**
-	 * Gets the request.
-	 *
-	 * @return the request
-	 */
-	public HttpServletRequest getRequest() {
-		return super.getRequestAdaptee();
-	}
-	
-	/**
-	 * Gets the response.
-	 *
-	 * @return the response
-	 */
-	public HttpServletRequest getResponse() {
-		return super.getResponseAdaptee();
-	}
+    /**
+     * Instantiates a new my translet implementation.
+     *
+     * @param coreActivity the core activity
+     */
+    public MyTransletImpl(CoreActivity coreActivity) {
+        super(coreActivity);
+    }
+
+    /**
+     * Gets the request.
+     *
+     * @return the request
+     */
+    public HttpServletRequest getRequest() {
+        return super.getRequestAdaptee();
+    }
+
+    /**
+     * Gets the response.
+     *
+     * @return the response
+     */
+    public HttpServletRequest getResponse() {
+        return super.getResponseAdaptee();
+    }
 
 }

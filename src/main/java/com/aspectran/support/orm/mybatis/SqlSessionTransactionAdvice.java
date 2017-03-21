@@ -34,88 +34,88 @@ import org.apache.ibatis.session.SqlSessionFactory;
  * @since 2015. 04. 03.
 */
 public class SqlSessionTransactionAdvice {
-	
-	private final SqlSessionFactory sqlSessionFactory;
-	
-	private boolean autoCommit;
 
-	private boolean forceCommit;
+    private final SqlSessionFactory sqlSessionFactory;
 
-	private boolean forceRollback;
+    private boolean autoCommit;
 
-	private SqlSession sqlSession;
+    private boolean forceCommit;
 
-	public SqlSessionTransactionAdvice(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
-	}
+    private boolean forceRollback;
 
-	public void setAutoCommit(boolean autoCommit) {
-		this.autoCommit = autoCommit;
-	}
+    private SqlSession sqlSession;
 
-	public void setForceCommit(boolean forceCommit) {
-		this.forceCommit = forceCommit;
-	}
+    public SqlSessionTransactionAdvice(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
+    }
 
-	public void setForceRollback(boolean forceRollback) {
-		this.forceRollback = forceRollback;
-	}
+    public void setAutoCommit(boolean autoCommit) {
+        this.autoCommit = autoCommit;
+    }
 
-	public SqlSession getSqlSession() {
-		return sqlSession;
-	}
+    public void setForceCommit(boolean forceCommit) {
+        this.forceCommit = forceCommit;
+    }
 
-	public SqlSession open() {
-		if(sqlSession == null) {
-			sqlSession = sqlSessionFactory.openSession(autoCommit);
-		}
-		return sqlSession;
-	}
+    public void setForceRollback(boolean forceRollback) {
+        this.forceRollback = forceRollback;
+    }
 
-	public SqlSession open(boolean autoCommit) {
-		this.autoCommit = autoCommit;
-		return open();
-	}
+    public SqlSession getSqlSession() {
+        return sqlSession;
+    }
 
-	public void commit() {
-		if(sqlSession != null) {
-			sqlSession.commit(forceCommit);
-		}
-	}
+    public SqlSession open() {
+        if(sqlSession == null) {
+            sqlSession = sqlSessionFactory.openSession(autoCommit);
+        }
+        return sqlSession;
+    }
 
-	public void commit(boolean force) {
-		if(sqlSession != null) {
-			sqlSession.commit(force);
-		}
-	}
+    public SqlSession open(boolean autoCommit) {
+        this.autoCommit = autoCommit;
+        return open();
+    }
 
-	/**
-	 * Rollback.
-	 *
-	 * <blockquote cite="https://mybatis.github.io/mybatis-3/java-api.html">
-	 * Most of the time you won't have to call rollback(),
-	 * as MyBatis will do that for you if you don't call commit.
-	 * However, if you need more fine grained control over a session where multiple commits
-	 * and rollbacks are possible, you have the rollback option there to make that possible.
-	 * </blockquote>
-	 */
-	public void rollback() {
-		if(sqlSession != null) {
-			sqlSession.rollback(forceRollback);
-		}
-	}
+    public void commit() {
+        if(sqlSession != null) {
+            sqlSession.commit(forceCommit);
+        }
+    }
 
-	public void rollback(boolean force) {
-		if(sqlSession != null) {
-			sqlSession.rollback(force);
-		}
-	}
+    public void commit(boolean force) {
+        if(sqlSession != null) {
+            sqlSession.commit(force);
+        }
+    }
 
-	public void close() {
-		if(sqlSession != null) {
-			sqlSession.close();
-			sqlSession = null;
-		}
-	}
-	
+    /**
+     * Rollback.
+     *
+     * <blockquote cite="https://mybatis.github.io/mybatis-3/java-api.html">
+     * Most of the time you won't have to call rollback(),
+     * as MyBatis will do that for you if you don't call commit.
+     * However, if you need more fine grained control over a session where multiple commits
+     * and rollbacks are possible, you have the rollback option there to make that possible.
+     * </blockquote>
+     */
+    public void rollback() {
+        if(sqlSession != null) {
+            sqlSession.rollback(forceRollback);
+        }
+    }
+
+    public void rollback(boolean force) {
+        if(sqlSession != null) {
+            sqlSession.rollback(force);
+        }
+    }
+
+    public void close() {
+        if(sqlSession != null) {
+            sqlSession.close();
+            sqlSession = null;
+        }
+    }
+
 }

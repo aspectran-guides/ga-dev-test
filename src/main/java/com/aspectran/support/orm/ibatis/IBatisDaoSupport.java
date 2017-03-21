@@ -20,27 +20,27 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public abstract class IBatisDaoSupport {
 
-	private String relevantAspectId;
+    private String relevantAspectId;
 
-	public void setRelevantAspectId(String relevantAspectId) {
-		this.relevantAspectId = relevantAspectId;
-	}
+    public void setRelevantAspectId(String relevantAspectId) {
+        this.relevantAspectId = relevantAspectId;
+    }
 
-	public SqlMapClient getSqlMapClient(Translet translet) {
-		return getSqlMapClient(translet, relevantAspectId);
-	}
+    public SqlMapClient getSqlMapClient(Translet translet) {
+        return getSqlMapClient(translet, relevantAspectId);
+    }
 
-	public SqlMapClient getSqlMapClient(Translet translet, String relevantAspectId) {
-		SqlMapClientTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
-		if (advice == null) {
-			throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
-		}
+    public SqlMapClient getSqlMapClient(Translet translet, String relevantAspectId) {
+        SqlMapClientTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
+        if (advice == null) {
+            throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
+        }
 
-		if(!advice.isStarted()) {
-			throw new IllegalArgumentException("sqlMap.startTransaction() has not been called.");
-		}
+        if(!advice.isStarted()) {
+            throw new IllegalArgumentException("sqlMap.startTransaction() has not been called.");
+        }
 
-		return advice.getSqlMapClient();
-	}
+        return advice.getSqlMapClient();
+    }
 
 }

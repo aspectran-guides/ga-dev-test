@@ -8,27 +8,27 @@ package com.aspectran.test;
  *
  */
 public class SqlMapConfig {
-	
-//	private static final SqlMapClient sqlMap;
+
+//    private static final SqlMapClient sqlMap;
 //
-//	static {
-//		try{
-//			final String resource = "sqlmap/sql-map-config.xml";
-//			ClassLoader classLoader = ResourceUtils.getClassLoader(SqlMapConfig.class.getClass());
-//			InputStream is = classLoader.getResourceAsStream(resource);
-//			sqlMap = SqlMapClientBuilder.buildSqlMapClient(is);
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			throw new RuntimeException("Error initializing SqlMapConfig class", e);
-//		}
-//	}
+//    static {
+//        try{
+//            final String resource = "sqlmap/sql-map-config.xml";
+//            ClassLoader classLoader = ResourceUtils.getClassLoader(SqlMapConfig.class.getClass());
+//            InputStream is = classLoader.getResourceAsStream(resource);
+//            sqlMap = SqlMapClientBuilder.buildSqlMapClient(is);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("Error initializing SqlMapConfig class", e);
+//        }
+//    }
 //
-//	/**
-//	 * SqlMapClient Instance를 반환한다.
-//	 * @return SqlMapClient
-//	 */
-//	public static SqlMapClient getInstance(){
-//		return sqlMap;
-//	}
+//    /**
+//     * SqlMapClient Instance를 반환한다.
+//     * @return SqlMapClient
+//     */
+//    public static SqlMapClient getInstance(){
+//        return sqlMap;
+//    }
 }
 

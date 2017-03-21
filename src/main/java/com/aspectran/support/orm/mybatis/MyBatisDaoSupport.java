@@ -21,28 +21,28 @@ import com.aspectran.core.activity.Translet;
 
 public abstract class MyBatisDaoSupport {
 
-	private String relevantAspectId;
+    private String relevantAspectId;
 
-	public void setRelevantAspectId(String relevantAspectId) {
-		this.relevantAspectId = relevantAspectId;
-	}
+    public void setRelevantAspectId(String relevantAspectId) {
+        this.relevantAspectId = relevantAspectId;
+    }
 
-	public SqlSession getSqlSession(Translet translet) {
-		return getSqlSession(translet, relevantAspectId);
-	}
+    public SqlSession getSqlSession(Translet translet) {
+        return getSqlSession(translet, relevantAspectId);
+    }
 
-	public SqlSession getSqlSession(Translet translet, String relevantAspectId) {
-		SqlSessionTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
-		if (advice == null) {
-			throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
-		}
+    public SqlSession getSqlSession(Translet translet, String relevantAspectId) {
+        SqlSessionTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
+        if (advice == null) {
+            throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
+        }
 
-		SqlSession sqlSession = advice.getSqlSession();
-		if (sqlSession == null) {
-			throw new IllegalArgumentException("SqlSession is not opened.");
-		}
+        SqlSession sqlSession = advice.getSqlSession();
+        if (sqlSession == null) {
+            throw new IllegalArgumentException("SqlSession is not opened.");
+        }
 
-		return sqlSession;
-	}
+        return sqlSession;
+    }
 
 }

@@ -33,11 +33,11 @@ public abstract class IBatisDaoSupport {
     public SqlMapClient getSqlMapClient(Translet translet, String relevantAspectId) {
         SqlMapClientTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
         if (advice == null) {
-            throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
+            throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified");
         }
 
         if(!advice.isStarted()) {
-            throw new IllegalArgumentException("sqlMap.startTransaction() has not been called.");
+            throw new IllegalArgumentException("sqlMap.startTransaction() has not been called");
         }
 
         return advice.getSqlMapClient();

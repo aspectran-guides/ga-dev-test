@@ -69,7 +69,7 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
     public void initialize(Translet translet) throws Exception {
         if (this.sqlMapClient == null) {
             if (configLocation == null) {
-                throw new IllegalArgumentException("Property 'configLocation' is required.");
+                throw new IllegalArgumentException("Property 'configLocation' is required");
             }
 
             File file = translet.getApplicationAdapter().toRealPathAsFile(configLocation);

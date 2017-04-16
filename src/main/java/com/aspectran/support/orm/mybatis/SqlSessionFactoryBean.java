@@ -312,7 +312,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
             configuration = xmlConfigBuilder.getConfiguration();
         } else {
             if(log.isDebugEnabled()) {
-                log.debug("Property 'configLocation' not specified, using default MyBatis Configuration.");
+                log.debug("Property 'configLocation' not specified, using default MyBatis Configuration");
             }
             configuration = new Configuration();
             configuration.setVariables(this.configurationProperties);
@@ -424,7 +424,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
             }
         } else {
             if(log.isDebugEnabled()) {
-                log.debug("Property 'mapperLocations' was not specified or no matching resources found.");
+                log.debug("Property 'mapperLocations' was not specified or no matching resources found");
             }
         }
 
@@ -435,10 +435,10 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
     public void initialize(Translet translet) throws Exception {
         if(this.sqlSessionFactory == null) {
             if(dataSource == null) {
-                throw new IllegalArgumentException("Property 'dataSource' is required.");
+                throw new IllegalArgumentException("Property 'dataSource' is required");
             }
             if(sqlSessionFactoryBuilder == null) {
-                throw new IllegalArgumentException("Property 'sqlSessionFactoryBuilder' is required.");
+                throw new IllegalArgumentException("Property 'sqlSessionFactoryBuilder' is required");
             }
 
             InputStream configLocationStream = null;

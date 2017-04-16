@@ -34,12 +34,12 @@ public abstract class MyBatisDaoSupport {
     public SqlSession getSqlSession(Translet translet, String relevantAspectId) {
         SqlSessionTransactionAdvice advice = translet.getAspectAdviceBean(relevantAspectId);
         if (advice == null) {
-            throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified.");
+            throw new IllegalArgumentException("SqlSessionTransactionAdvice is not specified");
         }
 
         SqlSession sqlSession = advice.getSqlSession();
         if (sqlSession == null) {
-            throw new IllegalArgumentException("SqlSession is not opened.");
+            throw new IllegalArgumentException("SqlSession is not opened");
         }
 
         return sqlSession;

@@ -181,7 +181,7 @@
                 <div class="medium-4 large-4 columns">
                     <h5>About Aspectran</h5>
                     <p>
-                        <a href="http://www.aspectran.com/info/">Aspectran is a lightweight Java framework for building Enterprise-ready Web applications. Also, It will be able to launch as a Console-based and Embedded application.</a>
+                        <a href="http://www.aspectran.com/info/">Aspectran is a lightweight Java application framework for building Web, console-based, and embedded applications.</a>
                     </p>
                 </div>
                 <div class="small-6 medium-3 large-3 large-offset-1 columns">
@@ -191,7 +191,7 @@
                         <li class=""><a href="http://www.aspectran.com/getting-started/" title="">Getting-Started</a></li>
                         <li class=""><a href="http://www.aspectran.com/docs/" title="">Documentation</a></li>
                         <li class=""><a href="http://www.aspectran.com/modules/" title="">Modules</a></li>
-                        <li class=""><a href="http://www.aspectran.com/blog/" title="">Blog</a></li>
+                        <li class=""><a href="http://www.aspectran.com/examples/" title="">Examples</a></li>
                     </ul>
                 </div>
                 <div class="small-6 medium-3 large-3 columns">
@@ -209,7 +209,7 @@
         <div id="subfooter">
             <nav class="row b30">
                 <section id="subfooter-left" class="medium-6 columns credits">
-                    <p>© 2008–2016 Juho Jeong. All rights reserved.</p>
+                    <p>© 2008–2017 Juho Jeong. All rights reserved.</p>
                 </section>
                 <section id="subfooter-right" class="medium-6 columns social-icons">
                     <ul>

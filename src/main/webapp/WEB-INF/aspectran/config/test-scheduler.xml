@@ -90,8 +90,8 @@
             </attributes>
         </request>
         <transform type="transform/text">
-            <template>
-                hello~ @{my_name_is}!!
+            <template style="apon">
+                |hello~ @{my_name_is}!!
             </template>
         </transform>
     </translet>
@@ -99,8 +99,8 @@
     <translet name="countTo10">
         <transform type="transform/text">
             <action id="result1" bean="sampleJobAction" method="countTo10"/>
-            <template>
-                @{result1}
+            <template style="apon">
+                |@{result1}
             </template>
         </transform>
     </translet>
@@ -109,11 +109,11 @@
         <action id="result1" bean="sampleJobAction" method="countTo10"/>
         <action id="result2" bean="sampleJobAction" method="countTo10"/>
         <transform type="transform/text">
-            <template>
-                (first)
-                @{result1}
-                (second)
-                @{result2}
+            <template style="apon">
+                |(first)
+                |@{result1}
+                |(second)
+                |@{result2}
             </template>
         </transform>
     </translet>
@@ -128,8 +128,8 @@
         <response>
             <transform type="transform/text">
                 <action id="result" bean="sampleJobAction" method="countTo10"/>
-                <template>
-                    @{result}
+                <template style="apon">
+                    |@{result}
                 </template>
             </transform>
         </response>

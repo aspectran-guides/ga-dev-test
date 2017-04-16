@@ -28,10 +28,10 @@
 			</arguments>
 		</action>
 		<transform type="transform/text">
-			<template>
-				hello~ ${name}
-				echoPrimitiveArray: @{countTo10}
-				@{echo^env-property}
+			<template style="apon">
+				|hello~ ${name}
+				|echoPrimitiveArray: @{countTo10}
+				|@{echo^env-property}
 			</template>
 		</transform>
 	</translet>
@@ -76,8 +76,8 @@
 	<translet name="sample/countTo10">
 		<transform type="transform/text">
 			<action id="result1" bean="sample.SampleAction" method="countTo10"/>
-			<template>
-				@{result1}
+			<template style="apon">
+				|@{result1}
 			</template>
 		</transform>
 	</translet>
@@ -87,11 +87,11 @@
 		<action id="result2" bean="sample.SampleAction" method="countTo10"/>
 		<response>
 			<transform type="transform/text" contentType="text/plain">
-				<template>
-					(first)
-					@{result1}
-					(second)
-					@{result2}
+				<template style="apon">
+					|(first)
+					|@{result1}
+					|(second)
+					|@{result2}
 				</template>
 			</transform>
 		</response>
@@ -128,8 +128,8 @@
 		<response>
 			<transform type="transform/text">
 				<action id="result" bean="sample.SampleAction" method="countTo10"/>
-				<template>
-					@{result}
+				<template style="apon">
+					|@{result}
 				</template>
 			</transform>
 		</response>
@@ -190,9 +190,9 @@
 	<translet name="sample/sampleBean.txt">
 		<transform type="transform/text">
 			<action id="sample" bean="sampleBean" method="hello"/>
-			<template>
-				text: @{sample}
-				The length of the output string is @{sample^length:0} bytes.
+			<template style="apon">
+				|text: @{sample}
+				|The length of the output string is @{sample^length:0} bytes.
 			</template>
 		</transform>
 	</translet>

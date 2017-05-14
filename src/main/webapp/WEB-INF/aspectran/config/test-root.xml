@@ -10,10 +10,10 @@
 		<setting name="transletImplementationClass" value="com.aspectran.example.common.MyTransletImpl"/>
 	</settings>
 
-	<import file="/WEB-INF/aspectran/config/test-properties.xml" profile="dev, prod"/>
-	<import file="/WEB-INF/aspectran/config/test-environment.xml" profile="dev, prod"/>
-	<import file="/WEB-INF/aspectran/config/test-scheduler.xml" profile="dev, prod"/>
-	<import file="/WEB-INF/aspectran/config/test-translets.xml"/>
+	<append file="/WEB-INF/aspectran/config/test-properties.xml" profile="dev, prod"/>
+	<append file="/WEB-INF/aspectran/config/test-environment.xml" profile="dev, prod"/>
+	<append file="/WEB-INF/aspectran/config/test-scheduler.xml" profile="dev, prod"/>
+	<append file="/WEB-INF/aspectran/config/test-translets.xml"/>
 
 	<bean id="jspViewDispatcher" class="com.aspectran.web.support.view.JspViewDispatcher">
 		<properties>

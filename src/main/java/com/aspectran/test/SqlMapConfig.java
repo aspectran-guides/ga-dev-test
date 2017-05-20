@@ -27,7 +27,7 @@ public class SqlMapConfig {
 //     * SqlMapClient Instance를 반환한다.
 //     * @return SqlMapClient
 //     */
-//    public static SqlMapClient getInstance(){
+//    public static SqlMapClient getInstance() {
 //        return sqlMap;
 //    }
 }

@@ -10,7 +10,7 @@
 
 	<!-- 기본 설정 -->
 	<settings>
-		<setting name="transletNamePattern" value="/ga-dev-test/simplest/*"/>
+		<setting name="transletNamePattern" value="/gs-dev-test/simplest/*"/>
 	</settings>
 	
 	<environment profile="dev">

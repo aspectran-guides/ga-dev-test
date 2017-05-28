@@ -6,7 +6,7 @@
 
 	<!-- 기본 설정 -->
 	<settings>
-		<setting name="transletNamePattern" value="/ga-dev-test/*"/>
+		<setting name="transletNamePattern" value="/gs-dev-test/*"/>
 	</settings>
 	
 	<translet name="echo/${msg}" method="GET">

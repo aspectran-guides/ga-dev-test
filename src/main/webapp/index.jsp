@@ -126,25 +126,25 @@
     
     <script>
         var urls = [
-            "/ga-dev-test/hello",
-            "/ga-dev-test/hello2",
-            "/ga-dev-test/hello3",
-            "/ga-dev-test/hello4",
-            "/ga-dev-test/sample/countTo10ext.xml",
-            "/ga-dev-test/sample/countTo10twice",
-            "/ga-dev-test/sample/countTo10twice.xml",
-            "/ga-dev-test/sample/applyTheAdvice.xml",
-            "/ga-dev-test/echo?param1=111111&param2=2222222222",
-            "/ga-dev-test/echoParameters?param1=111111&param2=2222222222",
-            "/ga-dev-test/sample/sampleBean.txt",
-            "/ga-dev-test/forward?param1=1&param2=2&param3=3&param4=4",
-            "/ga-dev-test/goNaver",
-            "/ga-dev-test/scheduler/hello.job",
-            "/ga-dev-test/scheduler/countTo10ext.job",
-            "/ga-dev-test/test/explicit.xml?param1=Explicit",
-            "/ga-dev-test/test/implicit.xml?param1=Implicit",
-            "/ga-dev-test/property1",
-            "/ga-dev-test/environment-test"
+            "/gs-dev-test/hello",
+            "/gs-dev-test/hello2",
+            "/gs-dev-test/hello3",
+            "/gs-dev-test/hello4",
+            "/gs-dev-test/sample/countTo10ext.xml",
+            "/gs-dev-test/sample/countTo10twice",
+            "/gs-dev-test/sample/countTo10twice.xml",
+            "/gs-dev-test/sample/applyTheAdvice.xml",
+            "/gs-dev-test/echo?param1=111111&param2=2222222222",
+            "/gs-dev-test/echoParameters?param1=111111&param2=2222222222",
+            "/gs-dev-test/sample/sampleBean.txt",
+            "/gs-dev-test/forward?param1=1&param2=2&param3=3&param4=4",
+            "/gs-dev-test/goNaver",
+            "/gs-dev-test/scheduler/hello.job",
+            "/gs-dev-test/scheduler/countTo10ext.job",
+            "/gs-dev-test/test/explicit.xml?param1=Explicit",
+            "/gs-dev-test/test/implicit.xml?param1=Implicit",
+            "/gs-dev-test/property1",
+            "/gs-dev-test/environment-test"
         ];
     
         var lb = $(".link-box:eq(0)");

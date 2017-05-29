@@ -6,29 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Development Testing</title>
 <link rel="stylesheet" type="text/css" href="http://www.aspectran.com/assets/css/styles_aspectran.css" />
-<script>
-    WebFontConfig = {
-        google : {
-            families : [ 'Open+Sans:400,700,400italic:latin' ]
-        }
-    };
-    (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http')
-                + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-    })();
-</script>
-<noscript>
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Volkhov' rel='stylesheet' type='text/css' />
-</noscript>
+<link href="http://fonts.googleapis.com/css?family=Raleway:500,500i,700" rel="stylesheet">
 <script src="http://www.aspectran.com/assets/js/modernizr.js"></script>
 <script src="http://www.aspectran.com/assets/js/jquery.js"></script>
 <script src="http://www.aspectran.com/assets/js/fastclick.js"></script>
-<meta name="description" content="개발 과정에서 기능의 검증을 위해 실시하는 테스트 URL을 모아 둔 페이지입니다." />
+<meta name="description" content="A page containing test URLs that are used to validate functionality during development." />
 <link rel="icon" sizes="32x32" href="http://www.aspectran.com/assets/img/favicon-32x32.png" />
 <link rel="icon" sizes="192x192" href="http://www.aspectran.com/assets/img/touch-icon-192x192.png" />
 <link rel="apple-touch-icon-precomposed" sizes="180x180" href="http://www.aspectran.com/assets/img/apple-touch-icon-180x180-precomposed.png" />
@@ -44,7 +26,7 @@
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Overview" />
-<meta property="og:description" content="Aspectran은 엔터프라이즈급 자바 웹 응용 프로그램을 구축하기 위한 가볍고 확장 가능한 프레임워크입니다. Apache 2.0 License에 의거하여 무료로 사용할 수 있습니다." />
+<meta property="og:description" content="Aspectran is a lightweight Java application framework for building Web, console-based, and embedded applications." />
 <meta property="og:url" content="http://www.aspectran.com/getting-started/overview/" />
 <meta property="og:site_name" content="Aspectran" />
 <link type="text/plain" rel="author" href="http://www.aspectran.com/humans.txt" />
@@ -88,10 +70,10 @@
             <div class="columns">
                 <header>
                     <span itemprop="name">
-                        <p class="subheadline">Development Testing</p>
-                        <h1>개발 테스트</h1>
+                        <p class="subheadline"></p>
+                        <h1>Development Testing</h1>
                     </span>
-                    <p class="teaser" itemprop="description">개발 과정에서 기능의 검증을 위해 실시하는 테스트 URL을 모아 둔 페이지입니다.</p>
+                    <p class="teaser" itemprop="description">A page containing test URLs that are used to validate functionality during development.</p>
                 </header>
             </div>
         </div>
@@ -100,7 +82,7 @@
                 <nav role="navigation" aria-label="You are here:">
                     <ul class="breadcrumbs">
                         <li><a href="/getting-started/">Aspectran Guides</a></li>
-                        <li><span class="show-for-sr">Current: </span> <span class="current">RESTful Web Service</span></li>
+                        <li><span class="show-for-sr">Current: </span> <span class="current">Development Testing</span></li>
                     </ul>
                 </nav>
             </div>

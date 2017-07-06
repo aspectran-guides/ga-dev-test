@@ -1,9 +1,9 @@
 package com.aspectran.example.scheduler;
 
-import com.aspectran.core.activity.Translet;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import com.aspectran.core.activity.Translet;
 
 public class SampleJobAction {
 

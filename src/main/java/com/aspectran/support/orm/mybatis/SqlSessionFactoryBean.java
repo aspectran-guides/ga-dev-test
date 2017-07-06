@@ -40,8 +40,8 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.type.TypeHandler;
 
 import com.aspectran.core.activity.Translet;
-import com.aspectran.core.context.bean.ablility.FactoryBean;
-import com.aspectran.core.context.bean.ablility.InitializableTransletBean;
+import com.aspectran.core.component.bean.ablility.FactoryBean;
+import com.aspectran.core.component.bean.ablility.InitializableTransletBean;
 import com.aspectran.core.util.StringUtils;
 import com.aspectran.core.util.logging.Log;
 import com.aspectran.core.util.logging.LogFactory;

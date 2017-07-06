@@ -1,10 +1,10 @@
 package com.aspectran.example.simplest;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.util.logging.Log;
 import com.aspectran.core.util.logging.LogFactory;
-
-import javax.servlet.http.HttpServletRequest;
 
 public class SimplestAdvice {
 

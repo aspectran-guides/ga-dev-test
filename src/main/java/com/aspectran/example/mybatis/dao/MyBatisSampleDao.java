@@ -11,22 +11,22 @@ public class MyBatisSampleDao extends MyBatisDaoSupport {
 
     public Object selectOne(Translet translet) throws SQLException {
         SqlSession sqlSession = getSqlSession(translet);
-        return sqlSession.selectOne("sample.selectOne", translet.getParameterMap());
+        return sqlSession.selectOne("sample.selectOne", translet.getAllParameters());
     }
 
     public void insertOne(Translet translet) throws SQLException {
         SqlSession sqlSession = getSqlSession(translet);
-        sqlSession.insert("sample.insertOne", translet.getParameterMap());
+        sqlSession.insert("sample.insertOne", translet.getAllParameters());
     }
 
     public void updateOne(Translet translet) throws SQLException {
         SqlSession sqlSession = getSqlSession(translet);
-        sqlSession.update("sample.updateOne", translet.getParameterMap());
+        sqlSession.update("sample.updateOne", translet.getAllParameters());
     }
 
     public void deleteOne(Translet translet) throws SQLException {
         SqlSession sqlSession = getSqlSession(translet);
-        sqlSession.delete("sample.deleteOne", translet.getParameterMap());
+        sqlSession.delete("sample.deleteOne", translet.getAllParameters());
     }
 
 }

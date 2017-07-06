@@ -1,10 +1,10 @@
 package com.aspectran.example.sample;
 
 import com.aspectran.core.activity.Translet;
-import com.aspectran.core.context.bean.ablility.DisposableBean;
-import com.aspectran.core.context.bean.ablility.InitializableBean;
-import com.aspectran.core.util.apon.VariableParameters;
+import com.aspectran.core.component.bean.ablility.DisposableBean;
+import com.aspectran.core.component.bean.ablility.InitializableBean;
 import com.aspectran.core.util.apon.Parameters;
+import com.aspectran.core.util.apon.VariableParameters;
 
 public class SampleBean implements InitializableBean, DisposableBean {
 

@@ -1,6 +1,6 @@
 package com.aspectran.example.common;
 
-import com.aspectran.core.context.bean.scan.BeanClassScanFilter;
+import com.aspectran.core.component.bean.scan.BeanClassScanFilter;
 
 public class UserClassScanFilter implements BeanClassScanFilter {
 

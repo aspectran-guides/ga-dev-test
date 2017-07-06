@@ -22,8 +22,8 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 
 import com.aspectran.core.activity.Translet;
-import com.aspectran.core.context.bean.ablility.FactoryBean;
-import com.aspectran.core.context.bean.ablility.InitializableTransletBean;
+import com.aspectran.core.component.bean.ablility.FactoryBean;
+import com.aspectran.core.component.bean.ablility.InitializableTransletBean;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 

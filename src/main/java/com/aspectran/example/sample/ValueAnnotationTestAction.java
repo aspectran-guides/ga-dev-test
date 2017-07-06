@@ -1,6 +1,6 @@
 package com.aspectran.example.sample;
 
-import com.aspectran.core.context.bean.annotation.Value;
+import com.aspectran.core.component.bean.annotation.Value;
 
 public class ValueAnnotationTestAction {
 

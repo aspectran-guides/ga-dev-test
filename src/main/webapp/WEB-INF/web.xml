@@ -28,7 +28,7 @@
             }
         }
         scheduler: {
-            startDelaySeconds: 13
+            startDelaySeconds: 0
             waitOnShutdown: true
             startup: true
         }

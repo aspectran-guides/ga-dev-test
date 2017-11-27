@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 4.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-4.dtd">
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
 
 <aspectran>
 
@@ -38,7 +38,7 @@
 	</bean>
 	
 	<aspect id="transletSettings">
-		<joinpoint type="translet"/>
+		<joinpoint target="translet"/>
 		<settings>
 			<setting name="characterEncoding" value="utf-8"/>
 			<setting name="multipartFormDataParser" value="multipartFormDataParser"/>
@@ -47,7 +47,7 @@
 	</aspect>
 
 	<aspect id="exception1">
-		<joinpoint type="translet">
+		<joinpoint target="translet">
 			pointcut: {
 				include: {
 					translet: /example/sample/*
@@ -59,12 +59,12 @@
 				<transform type="transform/xml" contentType="text/xml">
 					<echo>
 						errorCode: E0001
-						message: error occured.
+						message: error occurred.
 					</echo>
 					<echo>
 						<item type="map">
 							<value name="errorCode">E0001</value>
-							<value name="message">error occured.</value>
+							<value name="message">error occurred.</value>
 						</item>
 					</echo>
 				</transform>
@@ -73,7 +73,7 @@
 	</aspect>
 
 	<aspect id="sampleAspect">
-		<joinpoint type="translet">
+		<joinpoint target="translet">
 			pointcut: {
 				+: /example/sample/*@sample.SampleAction^applyTheAdvice
 				-: /aaaa*@*^bbb
@@ -95,7 +95,7 @@
 			Adivce Bean이 Pointcut에 포함되면 재귀호출 현상이 발생하기 때문에
 			Pointcur에서 Advice Bean "advice.simplest.SimplestAdvice"을 제외해야 합니다.
 		</description>
-		<joinpoint type="bean">
+		<joinpoint target="method">
 			pointcut: {
 				+: /ga-dev-test/**@**.*Action
 				+: /ga-dev-test/**@**.*Advice

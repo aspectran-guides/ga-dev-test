@@ -15,17 +15,18 @@
  */
 package com.aspectran.support.orm.ibatis;
 
+import com.aspectran.core.component.bean.ablility.FactoryBean;
+import com.aspectran.core.component.bean.ablility.InitializableBean;
+import com.aspectran.core.component.bean.aware.EnvironmentAware;
+import com.aspectran.core.context.env.Environment;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import com.ibatis.sqlmap.client.SqlMapClientBuilder;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
-
-import com.aspectran.core.activity.Translet;
-import com.aspectran.core.component.bean.ablility.FactoryBean;
-import com.aspectran.core.component.bean.ablility.InitializableTransletBean;
-import com.ibatis.sqlmap.client.SqlMapClient;
-import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 
 /**
 * The Class SqlMapClientFactoryBean.
@@ -34,7 +35,9 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
 *
 * <p>Created: 2015. 04. 03</p>
 */
-public class SqlMapClientFactoryBean implements InitializableTransletBean, FactoryBean<SqlMapClient> {
+public class SqlMapClientFactoryBean implements EnvironmentAware, InitializableBean, FactoryBean<SqlMapClient> {
+
+    private Environment environment;
 
     private String configLocation;
 
@@ -66,13 +69,18 @@ public class SqlMapClientFactoryBean implements InitializableTransletBean, Facto
     }
 
     @Override
-    public void initialize(Translet translet) throws Exception {
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
+
+    @Override
+    public void initialize() throws Exception {
         if (this.sqlMapClient == null) {
             if (configLocation == null) {
                 throw new IllegalArgumentException("Property 'configLocation' is required");
             }
 
-            File file = translet.getApplicationAdapter().toRealPathAsFile(configLocation);
+            File file = environment.toRealPathAsFile(configLocation);
             InputStream is = new FileInputStream(file);
 
             buildSqlMapClient(is);

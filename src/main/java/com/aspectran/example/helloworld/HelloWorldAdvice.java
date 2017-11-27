@@ -1,10 +1,10 @@
 package com.aspectran.example.helloworld;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.aspectran.core.activity.Translet;
 import com.aspectran.core.util.logging.Log;
 import com.aspectran.core.util.logging.LogFactory;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class HelloWorldAdvice {
 
@@ -28,8 +28,8 @@ public class HelloWorldAdvice {
         return msg;
     }
 
-    public String errorOccured() {
-        String msg = "Error occured!";
+    public String errorOccurred() {
+        String msg = "Error occurred!";
 
         log.info(msg);
 

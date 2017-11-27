@@ -120,7 +120,7 @@
             "/gs-dev-test/echoParameters?param1=111111&param2=2222222222",
             "/gs-dev-test/sample/sampleBean.txt",
             "/gs-dev-test/forward?param1=1&param2=2&param3=3&param4=4",
-            "/gs-dev-test/goNaver",
+            "/gs-dev-test/gotoNaver",
             "/gs-dev-test/scheduler/hello.job",
             "/gs-dev-test/scheduler/countTo10ext.job",
             "/gs-dev-test/test/explicit.xml?param1=Explicit",

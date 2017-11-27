@@ -54,7 +54,7 @@
 					<echo>
 						<item type="map">
 							<value name="errorCode">E0001</value>
-							<value name="message">error occured.</value>
+							<value name="message">error occurred.</value>
 						</item>
 					</echo>
 				</transform>

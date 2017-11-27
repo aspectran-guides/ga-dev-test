@@ -15,15 +15,12 @@
  */
 package com.aspectran.support.orm.mybatis;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
+import com.aspectran.core.component.bean.ablility.FactoryBean;
+import com.aspectran.core.component.bean.ablility.InitializableBean;
+import com.aspectran.core.component.bean.aware.EnvironmentAware;
+import com.aspectran.core.util.StringUtils;
+import com.aspectran.core.util.logging.Log;
+import com.aspectran.core.util.logging.LogFactory;
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.executor.ErrorContext;
@@ -39,12 +36,13 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.type.TypeHandler;
 
-import com.aspectran.core.activity.Translet;
-import com.aspectran.core.component.bean.ablility.FactoryBean;
-import com.aspectran.core.component.bean.ablility.InitializableTransletBean;
-import com.aspectran.core.util.StringUtils;
-import com.aspectran.core.util.logging.Log;
-import com.aspectran.core.util.logging.LogFactory;
+import javax.sql.DataSource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * {@code FactoryBean} that creates an MyBatis {@code SqlSessionFactory}.
@@ -62,11 +60,13 @@ import com.aspectran.core.util.logging.LogFactory;
  * @see #setConfigLocation
  * @see #setDataSource
  */
-public class SqlSessionFactoryBean implements InitializableTransletBean, FactoryBean<SqlSessionFactory> {
+public class SqlSessionFactoryBean implements EnvironmentAware, InitializableBean, FactoryBean<SqlSessionFactory> {
 
     private static final String CONFIG_LOCATION_DELIMITERS = ",;";
 
     private static final Log log = LogFactory.getLog(SqlSessionFactoryBean.class);
+
+    private com.aspectran.core.context.env.Environment aspectranEnvironment;
 
     private String configLocation;
 
@@ -432,7 +432,12 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
     }
 
     @Override
-    public void initialize(Translet translet) throws Exception {
+    public void setEnvironment(com.aspectran.core.context.env.Environment aspectranEnvironment) {
+        this.aspectranEnvironment = aspectranEnvironment;
+    }
+
+    @Override
+    public void initialize() throws Exception {
         if(this.sqlSessionFactory == null) {
             if(dataSource == null) {
                 throw new IllegalArgumentException("Property 'dataSource' is required");
@@ -445,7 +450,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
             InputStream[] mapperLocationStreams = null;
 
             if(configLocation != null) {
-                File file = translet.getApplicationAdapter().toRealPathAsFile(configLocation);
+                File file = aspectranEnvironment.toRealPathAsFile(configLocation);
                 configLocationStream = new FileInputStream(file);
             }
 
@@ -454,7 +459,7 @@ public class SqlSessionFactoryBean implements InitializableTransletBean, Factory
 
                 for(int i = 0; i < mapperLocations.length; i++) {
                     if(mapperLocations[i] != null) {
-                        File file = translet.getApplicationAdapter().toRealPathAsFile(mapperLocations[i]);
+                        File file = aspectranEnvironment.toRealPathAsFile(mapperLocations[i]);
                         mapperLocationStreams[i] = new FileInputStream(file);
                     }
                 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 4.0//EN"
-                           "http://aspectran.github.io/dtd/aspectran-4.dtd">
+<!DOCTYPE aspectran PUBLIC "-//ASPECTRAN//DTD Aspectran Configuration 5.0//EN"
+                           "http://aspectran.github.io/dtd/aspectran-5.dtd">
 
 <aspectran>
 
@@ -28,7 +28,7 @@
     <bean id="sampleJobAction" class="com.aspectran.example.scheduler.SampleJobAction"/>
 
     <aspect id="exception2">
-        <joinpoint type="translet">
+        <joinpoint target="translet">
             pointcut: {
                 +: /scheduler/*.job
             }
@@ -39,7 +39,7 @@
                     <echo>
                         <item name="error" type="map">
                             <value name="errorCode">E0001</value>
-                            <value name="message">error occured.</value>
+                            <value name="message">error occurred.</value>
                         </item>
                     </echo>
                 </transform>
@@ -52,7 +52,7 @@
         <joinpoint>
             <pointcut type="simple-trigger">
                 startDelay: 500
-                repleatInterval: 3000
+                repeatInterval: 3000
                 repeatCount: 10
             </pointcut>
         </joinpoint>

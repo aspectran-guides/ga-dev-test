@@ -230,7 +230,7 @@
 		<joinpoint>
 			<pointcut type="simple-trigger">
 				startDelay: 500
-				repleatInterval: 3000
+				repeatInterval: 3000
 				repeatCount: 10
 			</pointcut>
 		</joinpoint>

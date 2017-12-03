@@ -9,12 +9,12 @@ import com.aspectran.core.util.apon.VariableParameters;
 public class SampleBean implements InitializableBean, DisposableBean {
 
     @Override
-    public void initialize() throws Exception {
+    public void initialize() {
         System.out.println("initialize sample bean");
     }
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         System.out.println("destroy sample bean");
     }
 

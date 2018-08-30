@@ -9,7 +9,7 @@
 		<setting name="transletNamePattern" value="/gs-dev-test/*"/>
 	</settings>
 	
-	<translet name="echo/${msg}" method="GET">
+	<translet name="echo/${msg}">
 		<transform type="transform/text" contentType="text/plain">
 			<template>
 				@{msg}

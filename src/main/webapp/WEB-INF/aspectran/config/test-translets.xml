@@ -198,7 +198,7 @@
 	</translet>
 
 	<translet name="gotoNaver">
-		<redirect target="http://search.naver.com/search.naver">
+		<redirect path="http://search.naver.com/search.naver">
 			<parameters>
 				<item name="where">nexearch</item>
 				<item name="query">서울</item>
